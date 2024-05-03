@@ -37,6 +37,7 @@ if (temperatura > 30) {
 
 ### Condicional `switch`
 El `switch` es otra estructura condicional que selecciona para ejecución un bloque de código de entre muchas alternativas basándose en el valor de una variable.
+Por ahora solo te mostraré un ejemplo de un `switch` funcional, pero profundizaremos en él más adelante.
 
 **Ejemplo de `switch`:**
 ```java
@@ -53,7 +54,7 @@ switch (dia) {
         System.out.println("Ese no es un día válido.");
 }
 ```
-Existe otra versión de `switch`, pero la abordaremos más adelante.
+Existe otra versión de `switch`, pero también la abordaremos más adelante.
 El uso de condicionales es fundamental para cualquier lógica de programación que requiera ejecución de código bajo ciertas condiciones. La elección entre `if` y `switch` a menudo depende de la naturaleza y cantidad de las condiciones a evaluar.
 
 # Problema
