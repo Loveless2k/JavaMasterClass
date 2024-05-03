@@ -1,170 +1,105 @@
-# Caracteres en Java - (`char`)
-En la computación y programación, un carácter es una unidad básica de información que representa un elemento de escritura, como una letra, un número, un símbolo de puntuación, o un símbolo especial (como un emoji). 
-Los caracteres son fundamentales para la creación y manipulación de datos textuales en casi todos los sistemas informáticos y aplicaciones de software.
+# Condicionales
+Los condicionales en Java son estructuras que permiten tomar decisiones en el flujo de un programa basándose en si una o más condiciones se evalúan como verdaderas (`true`) o falsas (`false`). 
+Los principales condicionales en Java son `if`, `else if`, `else`, y la declaración `switch`.
 
-## Conceptos Básicos de Caracteres
-### 1. Codificación de Caracteres:
-La representación de caracteres en computadoras requiere una codificación específica que asocia un número único con cada carácter. 
-Estas codificaciones permiten que los caracteres se almacenen y procesen digitalmente. Algunos de los sistemas de codificación más comunes incluyen:
+### Condicional `if`
+El condicional `if` es el más básico y se utiliza para ejecutar un bloque de código solo si una condición especificada es `true`.
 
-#### `ASCII` (American Standard Code for Information Interchange): 
-Es uno de los sistemas de codificación más antiguos y se utiliza principalmente para caracteres del alfabeto inglés, dígitos y símbolos de control. `ASCII` es un conjunto de 128 caracteres codificados en 7 bits, que abarca valores del 0 al 127.
-
-#### `Unicode`: 
-Diseñado para superar las limitaciones de los sistemas de codificación más antiguos que no podían abarcar caracteres de todos los sistemas de escritura del mundo. 
-`Unicode` es un estándar que incluye un repertorio de más de 100,000 caracteres, cubriendo la mayoría de los sistemas de escritura del mundo, así como símbolos, emojis y otras formas gráficas.
-
-### 2. Tipos de Caracteres:
-Los caracteres pueden clasificarse en varias categorías, tales como:
-
-  - `Letras`: Incluyen caracteres de alfabetos utilizados para escribir lenguajes (por ejemplo, 'A', 'b', 'ç').
-  - `Dígitos`: Caracteres numéricos del 0 al 9.
-  - `Símbolos de Puntuación`: Como puntos, comas, signos de interrogación, etc.
-  - `Caracteres de Control`: No representan símbolos escritos pero controlan cómo se procesan los textos. Ejemplos incluyen el retorno de carro y el avance de línea.
-  - `Símbolos Especiales`: Incluyen monedas, símbolos matemáticos, emojis, etc.
-
-## Importancia de los Caracteres
-### 1. Comunicación y Procesamiento de Datos:
-Los caracteres son esenciales para almacenar y procesar información en forma de texto, lo que es crucial para la mayoría de las formas de comunicación digital, desde la escritura de código hasta la creación de documentos y la comunicación en redes sociales.
-
-### 2. Internacionalización:
-El uso de caracteres en una amplia variedad de codificaciones permite que las aplicaciones y los sistemas informáticos funcionen globalmente, soportando múltiples idiomas y culturas sin necesidad de sistemas separados para cada conjunto de caracteres lingüísticos.
-
-### 3. Interfaz de Usuario:
-Los caracteres son fundamentales para crear interfaces de usuario en software y aplicaciones, permitiendo a los usuarios interactuar con el sistema a través de texto visible.
-
-## Representaciónes de los caracteres en Java
-En Java, los caracteres pueden ser representados de diversas formas, cada una con sus propios usos y aplicaciones específicas. 
-Estas formas incluyen la representación simple directa, la representación `Unicode` y la representación mediante valores decimales `ASCII`. 
-Vamos a explorar cada uno de estos métodos con detalles, ejemplos, y discutir su usabilidad e importancia:
-
-### 1. Representación Simple Directa
-#### Descripción:
-La representación simple de caracteres en Java utiliza directamente el carácter dentro de comillas simples. Es la forma más directa y legible de representar caracteres.
-
-Ejemplo:
-
+**Ejemplo simple de `if`:**
 ```java
-char letraA = 'A';
-char signoPregunta = '?';
-char espacio = ' ';
+if (condición) {
+    // Bloque de código que se ejecuta si la condición es verdadera
+}
 ```
 
-#### Usabilidad e Importancia:
-  - `Legibilidad`: Esta forma es muy legible y fácil de entender, lo que la hace ideal para caracteres comunes y en situaciones donde la claridad del código es prioritaria.
-  - `Sencillez`: Es adecuada para la mayoría de los caracteres alfanuméricos y signos de puntuación que se encuentran directamente en el teclado.
-    
-### 2. Representación Unicode
-#### Descripción:
-`Unicode` es un estándar internacional que permite la codificación de texto para prácticamente cualquier sistema de escritura. 
-En Java, los caracteres Unicode se pueden representar utilizando la notación `\u` seguida de un número hexadecimal de cuatro dígitos que corresponde al punto de código `Unicode` del carácter.
-
-Ejemplo:
-
+**Ejemplo con `if` en Java:**
 ```java
-char letraA = '\u0041'; // Unicode para 'A'
-char signoPregunta = '\u003F'; // Unicode para '?'
-char yen = '\u00A5'; // Símbolo de la moneda yen
+int numero = 10;
+if (numero > 0) {
+    System.out.println("El número es positivo.");
+}
 ```
 
-Puedes encontrar en detalle los caracteres `Unicode` en sitios como el siguiente: [UNICODE-TABLE](https://symbl.cc/es/unicode-table/)
+### `else if` y `else`
+Si la condición `if` es falsa, puedes usar `else if` para probar otra condición y `else` para ejecutar un bloque de código si ninguna de las condiciones anteriores fue verdadera.
 
-#### Usabilidad e Importancia:
-  - `Universalidad`: Permite representar caracteres de lenguas y símbolos que no están disponibles en `ASCII` estándar, como caracteres chinos, japoneses, árabes, emojis, etc.
-  - `Compatibilidad`: Esencial para programas que necesitan soportar múltiples idiomas y alfabetos, asegurando que el texto se muestre correctamente en diferentes plataformas y configuraciones regionales.
-
-### 3. Representación Decimal ASCII
-#### Descripción:
-Java permite representar caracteres mediante su valor decimal en la tabla `ASCII` (American Standard Code for Information Interchange), que es un subconjunto de `Unicode` para los primeros 128 caracteres. 
-Esto se logra convirtiendo un valor entero al tipo char.
-
-Ejemplo:
-
+**Ejemplo de `if`, `else if`, `else`:**
 ```java
-char signoPregunta = (char) 63; // ASCII para '?'
-char letraA = (char) 65; // ASCII para 'A'
-char espacio = (char) 32; // ASCII para espacio
+int temperatura = 25;
+if (temperatura > 30) {
+    System.out.println("Hace calor.");
+} else if (temperatura < 10) {
+    System.out.println("Hace frío.");
+} else {
+    System.out.println("La temperatura es agradable.");
+}
 ```
 
-#### Usabilidad e Importancia:
-  - `Control de bajo nivel`: Útil en situaciones donde se necesitan manipulaciones específicas de caracteres basadas en sus valores numéricos, como en criptografía, algoritmos de compresión o comunicación de datos donde se requiere un control exacto sobre los datos codificados.
-  - `Conversión y manipulación`: Permite realizar conversiones y cálculos directos con valores de caracteres, lo cual puede ser necesario en procesamiento de texto y generación dinámica de caracteres.
+### Condicional `switch`
+El `switch` es otra estructura condicional que selecciona para ejecución un bloque de código de entre muchas alternativas basándose en el valor de una variable.
 
-#### Conclusión
-Cada método de representación de caracteres en Java tiene su lugar y propósito dentro del desarrollo de software. 
-La elección de un método sobre otro depende del contexto específico de la aplicación, tales como los requisitos de internacionalización, la necesidad de claridad y legibilidad del código, o requisitos técnicos específicos relacionados con el procesamiento de caracteres. 
-La flexibilidad en la representación de caracteres es una de las fortalezas de Java, permitiendo a los desarrolladores abordar una amplia gama de necesidades y desafíos en el manejo de textos y datos a nivel global.
+**Ejemplo de `switch`:**
+```java
+int dia = 3;
+switch (dia) {
+    case 1:
+        System.out.println("Lunes");
+        break;
+    case 2:
+        System.out.println("Martes");
+        break;
+    // ... y así sucesivamente para los demás días de la semana
+    default:
+        System.out.println("Ese no es un día válido.");
+}
+```
+Existe otra versión de `switch`, pero la abordaremos más adelante.
+El uso de condicionales es fundamental para cualquier lógica de programación que requiera ejecución de código bajo ciertas condiciones. La elección entre `if` y `switch` a menudo depende de la naturaleza y cantidad de las condiciones a evaluar.
 
-## Desafío Caracter
-Imagina que estás trabajando en un software de edición de texto que debe reconocer y convertir diferentes formatos de caracteres especiales ingresados por usuarios de diferentes regiones y teclados, manteniendo la consistencia visual.
+# Problema
+Imagina que estás jugando un videojuego donde ganas puntos al completar niveles. Al final del juego, quieres calcular tu puntuación total, que incluye tu puntuación inicial más puntos adicionales por cada nivel completado y las bonificaciones obtenidas.
 
 ### Enunciado del Problema
-Desarrolla un programa en Java que muestre cómo representar el mismo carácter (?) de tres maneras diferentes: como un carácter simple, como un carácter Unicode y como un carácter decimal. 
-El programa debe imprimir estas representaciones en una sola salida formateada.
-
-### Explicación del Problema
-El objetivo es entender las diferentes formas de representar caracteres en Java. Esto incluye:
-
-  - `Caracteres Simples`: Utilizados directamente en el código.
-  - `Caracteres Unicode`: Usando la notación \uXXXX.
-  - `Caracteres Decimales`: Convertidos de su código ASCII a un carácter.
+Calcula la puntuación final en un juego al completar un nivel. La puntuación inicial es de 10,000 puntos y se añaden puntos adicionales basados en el número de niveles completados y una bonificación.
 
 ### Paso a Paso para Resolver el Problema
-#### Declarar tres variables de tipo char:
-  - Una para el carácter simple.
-  - Una para el carácter Unicode usando la notación `Unicode`.
-  - Una para el carácter decimal, convirtiendo el valor decimal `ASCII` a char.
-    
-#### Imprimir los valores:
-  - Utiliza `System.out.println` para mostrar los valores de las tres variables en una oración bien formateada, asegurándote de incluir una descripción para cada tipo de representación.
 
-## Solución planteada:
-Desde este punto en adelante - Spoilers! -
-Aquí te explico detalladamente cada parte de la solución:
+1. **Inicializa variables para representar si el juego terminó, la puntuación inicial, los niveles completados y la bonificación**.
+2. **Verifica si el juego ha terminado con una condición `if`**.
+3. **Si el juego terminó, calcula la puntuación final sumando la puntuación inicial más el producto de los niveles completados y la bonificación**.
+4. **Imprime la puntuación final**.
 
-### Estructura General
-El código define una clase pública llamada `DesafioCaracter` que contiene un método `main`, el cual es el punto de entrada cuando el programa se ejecuta. 
-El método `main` es estático, lo que significa que puede ser llamado sin necesidad de crear una instancia de la clase. Nuevamente, ya lo he mencionado pero si no te queda clara la funcionalidad de la palabra clave `static`, no te preocupes,
-lo abordaremos más adelante en detalle.
+## Solución propuesta
+El código de `DesafioCondicional` es un programa en Java que realiza un cálculo condicional para determinar la puntuación final de un juego. 
+A continuación, se detallan las partes del código:
 
-### Declaración de Variables
-Dentro del método `main`, se declaran tres variables de tipo `char`, cada una representando el carácter de interrogación (`?`) de diferentes maneras:
+1. **Declaración de Variables:**
+   - `juegoTerminado`: Es una variable booleana que indica si el juego ha concluido. Si es `true`, se procederá a calcular la puntuación final.
+   - `puntuacion`: Representa la puntuación inicial del jugador, establecida en `10000`.
+   - `nivelCompletado`: Indica la cantidad de niveles que el jugador ha completado, en este caso `8`.
+   - `bonificacion`: Es una cantidad de puntos adicional que el jugador recibe por cada nivel completado, aquí `200`.
 
-  - `miCaracterSimple`: Directamente se asigna el carácter de interrogación utilizando comillas simples. Es la forma más directa de asignar un valor de carácter.
+2. **Estructura Condicional `if`:**
+   - Evalúa si `juegoTerminado` es `true`. Solo si esta condición es verdadera, se ejecutará el bloque de código dentro del `if`.
+   
+3. **Cálculo de la Puntuación Final:**
+   - Dentro del `if`, se declara `puntuacionFinal`, que inicialmente es igual a `puntuacion`.
+   - Luego, se añade a `puntuacionFinal` el producto de `nivelCompletado` multiplicado por `bonificacion`. Esto se traduce en un aumento de la puntuación basado en el rendimiento del jugador.
 
-  ```java
-  char miCaracterSimple = '?';
-  ```
+4. **Impresión de la Puntuación Final:**
+   - Utiliza `System.out.println` para imprimir en la consola la puntuación final obtenida después de completar los niveles y sumar las bonificaciones correspondientes.
 
-  - `miCaracterUnicode`: Usa la notación Unicode (`\u003F`) para asignar el carácter. El código Unicode `003F` corresponde al carácter de interrogación.
-    Esta notación es útil cuando se trabaja con caracteres que no están fácilmente disponibles en el teclado o para asegurar la compatibilidad entre diferentes sistemas y locales.
+**Ejemplo de Ejecución:**
+Suponiendo que el jugador ha terminado el juego (`juegoTerminado` es `true`), el cálculo sería el siguiente:
 
-  ```java
-  char miCaracterUnicode = '\u003F';
-  ```
+- Puntuación inicial: 10000
+- Puntos adicionales por niveles completados: 8 niveles * 200 puntos/nivel = 1600 puntos
+- Puntuación final: 10000 + 1600 = 11600
 
-  - `miCaracterDecimal`: Asigna el carácter utilizando su equivalente en el valor decimal `ASCII`, que para el carácter de interrogación es `63`. Aquí, el valor entero `63` se convierte explícitamente al tipo `char`.
+Por lo tanto, el programa imprimiría:
 
-  ```java
-  char miCaracterDecimal = (char) 63;
-  ```
-
-### Impresión de Resultados
-Finalmente, el programa imprime una línea que combina texto con los valores de las tres variables. Este paso ilustra cómo diferentes métodos de declaración pueden resultar en el mismo carácter visual en la salida.
-
-```java
-System.out.println("Mis valores son " + miCaracterSimple + " para caracter simple, " +
-                   miCaracterUnicode + " para caracter Unicode, " +
-                   miCaracterDecimal + " para caracter decimal.");
+```
+La puntuación final es = 11600
 ```
 
-La salida de esta línea será:
-
-`Mis valores son ? para caracter simple, ? para caracter Unicode, ? para caracter decimal.`
-
-Esta línea demuestra que los tres métodos diferentes de definir un carácter en Java son equivalentes en cuanto a su resultado final, aunque cada método tiene sus propias aplicaciones y ventajas según el contexto del problema a resolver.
-
-### Conclusión
-Este código es un excelente ejemplo para ilustrar las diferentes formas de trabajar con caracteres en Java, demostrando que a pesar de las diferencias en la declaración, el resultado visual puede ser el mismo. Es especialmente útil para enseñar sobre la codificación de caracteres y la importancia de entender `Unicode` y `ASCII` en el desarrollo de software moderno.
-    
-
+Este programa simula un cálculo que podría encontrarse en un videojuego, donde al finalizar el juego se otorgan puntos adicionales al jugador en función de los niveles completados y las bonificaciones adquiridas durante el juego.
