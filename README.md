@@ -1,142 +1,85 @@
-# La clase `Math`
-La clase `Math` en Java proporciona métodos estáticos para realizar operaciones matemáticas fundamentales. Algunos de los métodos más utilizados son:
+# Cómo abordar un problema
+Abordar un problema de programación de manera efectiva involucra varias etapas clave que pueden ayudar a garantizar que el resultado final sea robusto,
+eficiente y fácil de mantener. Aquí detallo un enfoque estructurado y explico la importancia de incluir validaciones en el proceso.
 
-### 1. `Math.abs()`
-Devuelve el valor absoluto de un número dado. El valor absoluto es siempre positivo o cero.
+### Etapas para Abordar un Problema de Programación
 
-**Ejemplo:**
-```java
-int negativo = -10;
-System.out.println(Math.abs(negativo)); // Imprime "10"
-```
+1. **Comprensión del Problema:**
+   - Antes de escribir cualquier código, es crucial entender completamente el problema.
+     Esto incluye conocer los requisitos exactos, qué se espera que haga el programa, y bajo qué condiciones operará.
 
-### 2. `Math.ceil()`
-Redondea el número decimal hacia arriba al número entero más cercano.
+2. **Planificación:**
+   - Desarrolla un plan o un algoritmo para cómo abordarás la solución.
+     Esto puede incluir la creación de diagramas de flujo, pseudocódigo o simplemente listar los pasos que necesita tu programa para resolver el problema.
 
-**Ejemplo:**
-```java
-double decimal = 9.2;
-System.out.println(Math.ceil(decimal)); // Imprime "10.0"
-```
+3. **División en Componentes:**
+   - Divide el problema en componentes o módulos manejables.
+     Esto no solo simplifica el desarrollo, sino que también ayuda en la prueba y mantenimiento del software.
 
-### 3. `Math.floor()`
-Redondea el número decimal hacia abajo al número entero más cercano.
+4. **Implementación:**
+   - Comienza a escribir el código, manteniendo las mejores prácticas de codificación en mente para asegurar que tu código sea limpio y eficiente.
 
-**Ejemplo:**
-```java
-double decimal = 9.8;
-System.out.println(Math.floor(decimal)); // Imprime "9.0"
-```
+### Importancia de las Validaciones
+Las validaciones son esenciales en cualquier programa por varias razones:
 
-### 4. `Math.round()`
-Redondea un número decimal al entero más cercano. Si es un número con decimal .5, se redondea al entero siguiente.
+- **Robustez:** Las validaciones ayudan a asegurar que el programa pueda manejar datos inesperados o erróneos sin fallar.
+  Por ejemplo, verificar si una entrada es negativa cuando solo debería ser positiva.
 
-**Ejemplo:**
-```java
-double decimal = 9.5;
-System.out.println(Math.round(decimal)); // Imprime "10"
-```
+- **Seguridad:** Previenen ataques maliciosos que podrían explotar vulnerabilidades relacionadas con la entrada de datos, como inyecciones SQL o desbordamientos de buffer.
 
-### 5. `Math.min()`
-Devuelve el menor de dos números.
+- **Usabilidad:** Mejoran la experiencia del usuario al proporcionar retroalimentación inmediata sobre problemas con los datos ingresados,
+  lo que permite correcciones antes de procesar la información.
 
-**Ejemplo:**
-```java
-int a = 10;
-int b = 20;
-System.out.println(Math.min(a, b)); // Imprime "10"
-```
+- **Integridad de Datos:** Aseguran que solo los datos válidos sean procesados, lo que es crucial en aplicaciones que manejan transacciones financieras,
+  registros médicos u otros datos sensibles.
 
-### 6. `Math.max()`
-Devuelve el mayor de dos números.
-
-**Ejemplo:**
-```java
-int a = 10;
-int b = 20;
-System.out.println(Math.max(a, b)); // Imprime "20"
-```
-
-### 7. `Math.pow()`
-Calcula el valor de un número elevado a la potencia de otro número.
-
-**Ejemplo:**
-```java
-double base = 2;
-double exponente = 3;
-System.out.println(Math.pow(base, exponente)); // Imprime "8.0"
-```
-
-### 8. `Math.sqrt()`
-Calcula la raíz cuadrada de un número.
-
-**Ejemplo:**
-```java
-double numero = 16;
-System.out.println(Math.sqrt(numero)); // Imprime "4.0"
-```
-
-### 9. `Math.random()`
-Genera un número pseudoaleatorio entre 0.0 y 1.0.
-
-**Ejemplo:**
-```java
-double aleatorio = Math.random();
-System.out.println(aleatorio); // Imprime un número entre 0.0 y 1.0
-```
-
-### 10. `Math.sin()`, `Math.cos()`, `Math.tan()`
-Calculan el seno, coseno y tangente de un ángulo en radianes, respectivamente.
-
-**Ejemplo:**
-```java
-double angulo = Math.PI / 2; // 90 grados en radianes
-System.out.println(Math.sin(angulo)); // Imprime "1.0"
-System.out.println(Math.cos(angulo)); // Imprime "0.0"
-System.out.println(Math.tan(angulo)); // Puede imprimir un valor muy grande, ya que tan(90) tiende a infinito
-```
-
-Estos métodos de la clase `Math` son fundamentales en cualquier programa que requiere cálculos matemáticos precisos y eficientes.
-Son utilizados en una amplia variedad de aplicaciones, desde juegos hasta aplicaciones científicas y financieras.
+Incluir validaciones desde las primeras etapas del desarrollo es una práctica recomendada que contribuye significativamente a la calidad y la seguridad del software final.
+Esta aproximación no solo minimiza los riesgos, sino que también reduce el costo y el esfuerzo necesarios para manejar problemas que podrían haberse evitado más adelante en el ciclo de vida del desarrollo.
 
 # Problema
-Imagina que estás conduciendo un coche que muestra la velocidad en millas por hora, pero las señales de tráfico están en kilómetros por hora.
-Necesitas una forma rápida de convertir entre estas unidades para asegurarte de no exceder los límites de velocidad.
+Supongamos que estás organizando los archivos en tu computadora y quieres entender cuánto espacio ocupan en términos más comprensibles como megabytes y kilobytes restantes,
+en lugar de un gran número de kilobytes. Este programa te ayudaría a convertir esos valores rápidamente.
 
-## Enunciado del Problema
-Crea un programa que convierta la velocidad de millas por hora a kilómetros por hora, validando entradas negativas como valores no válidos.
+### Enunciado del Problema
+Crea un programa que convierta kilobytes en megabytes y kilobytes restantes, e imprima el resultado.
+El programa debe manejar valores negativos informando que el valor es inválido.
 
-## Paso a Paso para Resolver el Problema
+### Paso a Paso para Resolver el Problema
 
-1. **Escribe un método que convierta millas por hora a kilómetros por hora.**
-   - Verifica que la entrada sea positiva; de lo contrario, devuelve `-1`.
-   - Realiza la conversión y redondea al número entero más cercano.
+1. **Implementar un método que reciba kilobytes como entrada.**
+   - Verificar si el valor de entrada es negativo y, de ser así, imprimir un mensaje de "Valor inválido" y terminar la ejecución del método.
 
-2. **Escribe un método que imprima el resultado de la conversión.**
-   - Valida nuevamente la entrada como en el paso anterior.
-   - Si es válida, imprime la velocidad original y la velocidad convertida.
+2. **Calcular los megabytes dividiendo los kilobytes por 1024.**
+   - Utilizar la división entera para obtener cuántos megabytes completos hay en los kilobytes dados.
+
+3. **Calcular los kilobytes restantes utilizando el operador de módulo (%).**
+   - Este cálculo dará los kilobytes que no completan otro megabyte.
+
+4. **Imprimir el resultado.**
+   - Formatear el resultado para mostrar cuántos megabytes y kilobytes restantes se derivan del valor inicial.
 
 ## Solución propuesta
-De aquí en más - spoilers - discutiremos sobre la solución propuesta a este problema.
-El código de `ConvertidorDeVelocidad` es un programa Java diseñado para convertir velocidades de millas por hora a kilómetros por hora y proporcionar una salida formatada de estas conversiones.
-El programa maneja también valores inválidos, es decir, velocidades negativas, las cuales no son lógicas en este contexto. Vamos a desglosar el código en sus componentes principales para entender mejor su funcionamiento.
+De aquí en adelante - spoilers - discutiremos sobre la solución propuesta a este problema.
+El programa `ConvertidorMegaBytes` en Java es una aplicación diseñada para convertir una cantidad específica de kilobytes (KB) a megabytes (MB) y kilobytes restantes.
+Es útil para comprender cómo el almacenamiento digital es calculado y presentado en unidades más grandes.
+Aquí te explico en detalle cómo funciona el programa y qué hace cada parte del código.
 
-### Descripción de Componentes
+### Descripción del Código
 
-1. **Método `main`**:
-   - Este es el punto de entrada del programa. Aquí se invoca repetidamente el método `imprimirConversion` con diferentes valores de entrada, algunos de los cuales son válidos y otros inválidos (negativos).
+**1. Método `main`:**
+- Este método es el punto de entrada del programa. Aquí, se llama al método `imprimirMegaBytesYKiloBytes` con diferentes valores de kilobytes como argumentos.
+  Los valores son 2500, -1024 y 5000 kilobytes.
+  Estas llamadas sirven para probar la funcionalidad del método en diferentes escenarios, incluyendo un valor negativo para probar la validación.
 
-2. **Método `convertirAKilometrosPorHora`**:
-   - Este método acepta una velocidad en millas por hora como parámetro y devuelve su equivalente en kilómetros por hora.
-   - Primero, verifica si el valor de entrada es menor que cero, en cuyo caso retorna `-1` para indicar un valor inválido.
-   - Si el valor es válido, calcula los kilómetros por hora utilizando la fórmula de conversión (1 milla = 1.609 kilómetros) y redondea el resultado al número entero más cercano utilizando `Math.round`.
+**2. Método `imprimirMegaBytesYKiloBytes`:**
+- **Parámetro:** `kiloBytes` es el entero que representa la cantidad de kilobytes que se quiere convertir.
+- **Validación:** Primero, el método verifica si el valor de `kiloBytes` es menor que cero. Si es así, imprime "Valor inválido" y termina la ejecución del método usando `return`.
+  Esta verificación asegura que no se procesen valores negativos, que no tendrían sentido en el contexto del cálculo de almacenamiento.
+- **Cálculo:** Si el valor es válido, el método procede a calcular cuántos megabytes hay en los kilobytes dados usando la división entera de `kiloBytes` por 1024
+  (ya que 1 MB = 1024 KB). Además, calcula los kilobytes restantes utilizando el operador módulo para determinar lo que no compone un megabyte completo.
+- **Impresión de Resultados:** Finalmente, imprime la conversión de kilobytes a megabytes y los kilobytes restantes en un formato claro y comprensible.
 
-3. **Método `imprimirConversion`**:
-   - Este método también recibe una velocidad en millas por hora.
-   - Realiza una verificación para determinar si el valor es válido. Si no lo es (i.e., es negativo), imprime "Valor inválido".
-   - Si el valor es válido, llama al método `convertirAKilometrosPorHora` para obtener la conversión a kilómetros por hora y luego imprime ambos valores en un formato legible, mostrando tanto las millas como los kilómetros por hora.
-
-### Funcionamiento en la Práctica
-
-Al ejecutar el programa, se imprimirán los resultados de las conversiones para los valores de prueba dados. Los valores positivos mostrarán su equivalente en kilómetros por hora, mientras que para el valor negativo (-5.6), el programa indicará que es un "Valor inválido".
-Este programa es útil en situaciones donde se necesita convertir velocidades entre diferentes unidades de medida, especialmente en contextos como simulaciones, aplicaciones de navegación, o programas educativos donde la conversión entre sistemas métricos y sistemas imperiales es frecuente.
+### Utilidad del Programa
+Este programa es particularmente útil en contextos donde es necesario manejar unidades de almacenamiento digital, como en la administración de archivos,
+sistemas operativos o incluso en el desarrollo de software que implica manipulación de datos a nivel de archivo.
+Ayuda a los usuarios o desarrolladores a entender y visualizar el tamaño de los datos de manera más significativa al convertir una gran cantidad de kilobytes a una combinación más comprensible de megabytes y kilobytes restantes.
