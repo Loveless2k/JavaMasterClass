@@ -1,58 +1,52 @@
 # Problema
-Un año bisiesto es aquel que tiene 366 días en lugar de los 365 días típicos de un año no bisiesto.
-Esta característica es esencial para mantener nuestro calendario en alineación con la órbita de la Tierra alrededor del Sol.
-Imagina que estás desarrollando un software para un calendario o una aplicación que necesita calcular plazos precisos;
-saber si un año es bisiesto sería crucial para la precisión del cálculo de fechas.
+Imagina que estás trabajando en un software de contabilidad o en un sistema de medición donde las comparaciones precisas hasta el tercer decimal son críticas.
+Por ejemplo, podrías necesitar verificar si dos mediciones de un componente o dos transacciones financieras son iguales hasta el milésimo.
 
 ### Enunciado del Problema
-Desarrolla un programa que determine si un año dado es bisiesto o no.
-El programa debe validar que el año esté en el rango de 1 a 9999, y aplicar las reglas para determinar si es bisiesto.
+Desarrolla un programa que compare dos números decimales y determine si son iguales hasta tres decimales. El programa debe ignorar cualquier decimal más allá del tercero.
 
 ### Paso a Paso para Resolver el Problema
 
-1. **Validar el Año:**
-    - Comprueba si el año está dentro del rango permitido (1 a 9999). Si no es así, retorna `false`.
+1. **Multiplicar cada número por 1000:**
+    - Esto convierte los decimales de interés en parte entera del número, desplazando el punto decimal tres posiciones a la derecha.
 
-2. **Aplicar las Reglas para Años Bisiestos:**
-    - Un año es bisiesto si se cumple alguna de las siguientes condiciones:
-        - Es divisible por 4 pero no por 100.
-        - Es divisible por 400.
-    - Usa operadores lógicos para verificar estas condiciones y retorna `true` si se cumple alguna de ellas.
+2. **Convertir los resultados a enteros:**
+    - Al convertir a entero, se descartan los decimales adicionales, dejando solo los tres primeros decimales como parte entera.
 
-3. **Retorna `false` si Ninguna Condición se Cumple:**
-    - Si ninguna de las condiciones para ser un año bisiesto se cumple, entonces el método deberá retornar `false`.
+3. **Comparar los dos valores enteros:**
+    - Si los enteros son iguales, entonces los números originales son iguales hasta tres decimales.
+
+4. **Retornar el resultado de la comparación:**
+    - El método retorna `true` si los números son iguales hasta tres decimales, y `false` de lo contrario.
 
 ## Solución propuesta
-A continuación, - spoilers -, discutiremos sobre la solución propuesta a este problema.
-El programa `CalculadoraAnhoBisiesto` en Java está diseñado para determinar si un año dado es bisiesto, siguiendo las reglas establecidas para los años bisiestos.
-Este tipo de cálculo es fundamental en aplicaciones que requieren manejo preciso de fechas, como calendarios, planificación de eventos o sistemas de contabilidad.
+Desde aquí en adelante, - spoilers - discutiremos la solución propuesta a este problema.
+El programa `ComparadorDecimal` en Java está diseñado para determinar si dos números decimales son iguales hasta tres lugares decimales.
+Es una herramienta útil para situaciones donde la precisión en las mediciones o los cálculos financieros es crucial y solo se requiere consistencia hasta el tercer decimal.
 
 ### Descripción de Componentes
 
 **1. Método `main`:**
-- Es el punto de entrada del programa. En este método, se llama al método `esAnhoBisiesto` con cuatro valores diferentes para ilustrar y probar la funcionalidad
-  del programa en diferentes escenarios:
-    - `-1600`: un año negativo para probar la validación de rango.
-    - `1600`: un año que es bisiesto bajo las reglas establecidas.
-    - `2017`: un año común que no es bisiesto.
-    - `2000`: un año que es bisiesto por ser divisible por 400.
+- Funciona como el punto de entrada del programa. Realiza llamadas al método `sonIgualesPorTresDecimales` con diferentes pares de valores para probar su funcionamiento.
+- Las pruebas incluyen comparar números con pequeñas diferencias en sus terceros decimales, valores exactamente iguales, y números con signos opuestos para verificar
+  la robustez del método.
 
-**2. Método `esAnhoBisiesto`:**
-- **Parámetros:** Recibe un entero `anho` que representa el año que se va a evaluar.
-- **Validación de Rango:** Primero verifica si el año está dentro del rango válido (1 a 9999). Si el año está fuera de este rango, el método retorna `false` directamente,
-  indicando que el año no es válido para la evaluación.
-- **Cálculo de Año Bisiesto:** Utiliza las reglas para determinar si un año es bisiesto:
-    - **Divisibilidad por 4 y no por 100:** Si un año es divisible por 4 pero no por 100, es un año bisiesto.
-    - **Divisibilidad por 400:** Además, cualquier año que sea divisible por 400 es un año bisiesto.
-      Esto es necesario para mantener nuestro calendario en sincronización con la órbita de la Tierra alrededor del sol.
-- **Expresión Lógica:** El método utiliza operadores lógicos para evaluar las condiciones mencionadas.
-  Si alguna de las condiciones se cumple (`anho % 4 == 0 && anho % 100 != 0` o `anho % 400 == 0`), el método retorna `true`, indicando que el año es bisiesto.
+**2. Método `sonIgualesPorTresDecimales`:**
+- **Parámetros:** Recibe dos valores de tipo `double`, `primerValor` y `segundoValor`, que representan los números a comparar.
+- **Proceso de Comparación:**
+    - **Transformación:** Cada número se multiplica por 1000. Esto esencialmente "mueve" el punto decimal tres posiciones a la derecha,
+      convirtiendo lo que eran los tres primeros decimales en la parte entera del número.
+    - **Conversión a Entero:** Al convertir los resultados a `int`, se descartan los decimales adicionales más allá del tercer lugar decimal.
+    - **Comparación:** Finalmente, compara estos dos valores enteros. Si son iguales, significa que los dos números originales son iguales hasta al menos tres lugares decimales.
 
 ### Funcionalidad del Programa
-Este programa proporciona una funcionalidad crucial para cualquier sistema que dependa del cálculo preciso de fechas,
-ayudando a determinar si un año específico tiene 366 días en lugar de los 365 días estándar.
-Esto es esencial para la correcta planificación de fechas futuras, especialmente en aplicaciones que manejan eventos anuales,
-programaciones o cálculos financieros que dependen del número exacto de días en un año.
+El propósito principal de este programa es facilitar la comparación de dos números decimales con precisión hasta el tercer decimal.
+Esta capacidad es especialmente importante en campos como la ciencia y la ingeniería, donde la precisión en las mediciones puede ser crítica, o en finanzas,
+donde las diferencias pequeñas pueden ser significativas en escalas grandes.
 
-El uso de este programa asegura que las aplicaciones que dependen de fechas manejen correctamente los años bisiestos,
-evitando errores comunes en la planificación y programación que podrían surgir de omitir el día adicional en febrero durante los años bisiestos.
+### Ejemplo Práctico
+Por ejemplo, si se están comparando dos mediciones de una sustancia química donde la precisión es crucial solo hasta el tercer decimal,
+este programa puede confirmar rápidamente si las mediciones cumplen con los estándares requeridos sin preocuparse por diferencias insignificantes más allá de ese punto.
+
+En resumen, `ComparadorDecimal` es una herramienta efectiva para garantizar que las comparaciones numéricas en aplicaciones sensibles a la precisión se manejen de
+manera adecuada y eficiente.
