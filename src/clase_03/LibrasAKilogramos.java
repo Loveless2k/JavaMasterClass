@@ -1,4 +1,4 @@
-package Clase03;
+package clase_03;
 
 public class LibrasAKilogramos {
 

@@ -1,4 +1,4 @@
-package Clase08;
+package clase_08;
 
 public class VerificarNumero {
 

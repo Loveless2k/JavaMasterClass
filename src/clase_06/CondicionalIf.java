@@ -1,4 +1,4 @@
-package Clase06;
+package clase_06;
 
 public class CondicionalIf {
 

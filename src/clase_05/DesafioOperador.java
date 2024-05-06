@@ -1,4 +1,4 @@
-package Clase05;
+package clase_05;
 
 public class DesafioOperador {
 

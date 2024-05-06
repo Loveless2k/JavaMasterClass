@@ -1,4 +1,4 @@
-package Clase10;
+package clase_10;
 
 public class ConvertidorMegaBytes {
 

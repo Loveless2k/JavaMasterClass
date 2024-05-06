@@ -1,4 +1,4 @@
-package Clase01;
+package clase_01;
 
 public class HelloWorld {
 

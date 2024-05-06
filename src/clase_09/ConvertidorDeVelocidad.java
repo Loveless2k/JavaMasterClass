@@ -1,4 +1,4 @@
-package Clase09;
+package clase_09;
 
 public class ConvertidorDeVelocidad {
 

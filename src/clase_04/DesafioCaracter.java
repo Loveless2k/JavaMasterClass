@@ -1,4 +1,4 @@
-package Clase04;
+package clase_04;
 
 public class DesafioCaracter {
 

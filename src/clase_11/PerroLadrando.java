@@ -1,4 +1,4 @@
-package Clase11;
+package clase_11;
 
 public class PerroLadrando {
 

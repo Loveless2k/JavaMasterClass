@@ -1,4 +1,4 @@
-package Clase07;
+package clase_07;
 
 public class DesafioMetodo {
 
