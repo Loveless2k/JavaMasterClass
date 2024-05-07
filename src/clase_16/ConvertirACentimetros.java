@@ -1,6 +1,6 @@
 package clase_16;
 
-public class ConvertirACentrimetros {
+public class ConvertirACentimetros {
 
     private static final double CENTIMETRO = 2.54;
     private static final int UN_PIE_EN_PULGADAS = 12;
