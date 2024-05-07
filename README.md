@@ -1,52 +1,56 @@
 # Problema
-Imagina que estás administrando las finanzas de un proyecto y necesitas asegurarte de que las sumas de diferentes partidas coincidan con el total declarado.
-Por ejemplo, quieres verificar que los gastos en dos categorías distintas sumen exactamente al total de gastos reportados.
+Imagina que estás organizando un evento juvenil y necesitas confirmar si al menos uno de los participantes está en la franja de edad adolescente
+para cumplir con ciertos requisitos de participación o normativas de seguridad.
+Este programa te permitiría verificar rápidamente las edades y tomar decisiones basadas en esta información.
 
 ### Enunciado del Problema
-Desarrolla un programa que determine si la suma de dos números enteros es igual a un tercer número.
-Este tipo de verificación puede ser útil en sistemas de contabilidad o en aplicaciones que requieran balancear transacciones o ajustar sumas.
+Desarrolla un programa que determine si al menos uno de tres individuos está en la etapa adolescente, definida como una edad entre 13 y 19 años inclusive.
 
 ### Paso a Paso para Resolver el Problema
 
-1. **Implementa un método que acepte tres parámetros enteros:**
-    - Los primeros dos parámetros representan las cantidades que necesitas sumar.
-    - El tercer parámetro es el total contra el cual se comparará la suma de los dos primeros.
+1. **Definir un método para verificar si una edad es adolescente:**
+    - Crea el método `esAdolescente`, que acepta un entero (edad) y retorna `true` si la edad está entre 13 y 19 años.
 
-2. **Realiza la suma de los dos primeros parámetros.**
-    - Suma los valores de los dos primeros parámetros.
+2. **Implementar un método que compruebe si alguno de tres números es adolescente:**
+    - Desarrolla el método `tieneAdolescente`, que recibe tres edades como parámetros.
+    - Utiliza el método `esAdolescente` dentro de `tieneAdolescente` para verificar cada edad.
+    - Retorna `true` si al menos uno de los tres números cumple con el criterio de ser adolescente.
 
-3. **Compara el resultado de la suma con el tercer parámetro.**
-    - Usa un operador de igualdad (`==`) para verificar si la suma de los dos primeros números es igual al valor del tercer número.
-
-4. **Retorna el resultado de la comparación.**
-    - El método retorna `true` si los números son iguales, de lo contrario, retorna `false`.
+3. **Realizar pruebas en el método `main`:**
+    - Prueba diferentes combinaciones de edades para asegurarte de que el método `tieneAdolescente` funciona correctamente.
 
 ## Solución propuesta
-De aquí en más, - spoilers - discutiremos la solución propuesta.
-El programa `ComprobadorSumaIgual` en Java está diseñado para determinar si la suma de dos números enteros es igual a un tercer número.
-Este es un problema común en varias aplicaciones, especialmente en sistemas de contabilidad y financiamiento, donde es esencial verificar la precisión de las sumas y balances.
+A continuación, - spoilers -, se discutirá sobre la solución propuesta.
+El programa `ComprobadorDeAdolescentes` en Java está diseñado para verificar si alguna de las edades proporcionadas cae dentro del rango adolescente,
+que se define como cualquier edad entre 13 y 19 años inclusive.
+Este tipo de funcionalidad es útil en múltiples contextos, desde la planificación de eventos hasta la implementación de políticas específicas para adolescentes.
 
-### Descripción Detallada
+### Descripción de Componentes
 
 **1. Método `main`:**
-- El método `main` es el punto de entrada del programa y se utiliza para probar el método `tieneSumaIgual` con diferentes conjuntos de números.
-- Se hacen llamadas al método `tieneSumaIgual` con tres diferentes conjuntos de argumentos para ilustrar cómo funciona el método en varias condiciones:
-    - `tieneSumaIgual(1, 1, 1)`: Verifica si 1 + 1 es igual a 1. Debería retornar `false` porque 1 + 1 es 2.
-    - `tieneSumaIgual(1, 1, 2)`: Verifica si 1 + 1 es igual a 2. Debería retornar `true` porque 1 + 1 es 2.
-    - `tieneSumaIgual(1, -1, 0)`: Verifica si 1 + (-1) es igual a 0. Debería retornar `true` porque 1 - 1 es 0.
+- Sirve como el punto de entrada para el programa. Se utilizan llamadas al método `tieneAdolescente` para verificar varias combinaciones de edades e imprimir los resultados
+  en la consola.
+  Este método prueba la funcionalidad del programa con diferentes conjuntos de datos para asegurar que responde correctamente bajo varias condiciones.
 
-**2. Método `tieneSumaIgual`:**
-- Este método acepta tres parámetros enteros: `numero1`, `numero2` y `numero3`.
-- Realiza una operación matemática simple, sumando `numero1` y `numero2`.
-- Luego, utiliza el operador de igualdad (`==`) para comparar el resultado de la suma con `numero3`.
-- Retorna `true` si los valores son iguales, indicando que la suma de los dos primeros números es igual al tercer número; de lo contrario, retorna `false`.
+**2. Método `esAdolescente`:**
+- **Parámetro:** Recibe un entero `edad`.
+- **Funcionalidad:** Evalúa si la edad dada está dentro del rango de 13 a 19 años.
+  Utiliza un simple condicional que comprueba si el valor de `edad` se encuentra entre estos límites, incluyendo ambos extremos.
+- **Retorno:** Devuelve `true` si la edad está dentro del rango adolescente, y `false` de lo contrario.
 
-### Utilidad del Programa
-Este programa es particularmente útil en aplicaciones que necesitan validar la corrección de las operaciones matemáticas, como en la contabilidad o la gestión financiera.
-Por ejemplo, podría utilizarse para asegurarse de que las entradas en un libro de contabilidad suman el total esperado o para verificar que las transacciones se han registrado correctamente.
+**3. Método `tieneAdolescente`:**
+- **Parámetros:** Acepta tres enteros, `edad1`, `edad2`, y `edad3`, que representan las edades que se van a evaluar.
+- **Funcionalidad:** Verifica si alguna de las tres edades es adolescente.
+  Esto se logra llamando al método `esAdolescente` para cada edad y combinando los resultados con el operador lógico OR (`||`).
+  Este operador retorna `true` si al menos uno de los operandos es `true`.
+- **Retorno:** Devuelve `true` si alguna de las edades es adolescente, de lo contrario, retorna `false`.
 
-### Ejemplo Práctico
-En la vida real, podría usarse en un sistema automatizado para verificar que los pagos realizados y recibidos en una transacción comercial
-coincidan exactamente con el total facturado, ayudando a prevenir errores o fraudes.
+### Funcionalidad del Programa
+El programa es útil para determinar rápidamente si un grupo de individuos contiene al menos un adolescente, lo cual puede ser crucial para adherirse a regulaciones específicas,
+como las restricciones de edad en eventos, programas educativos, o actividades sociales.
+Por ejemplo, si una actividad está diseñada específicamente para adolescentes, el programa puede ayudar a confirmar que los participantes cumplen con los criterios de edad
+antes de permitir su inscripción.
 
-En resumen, `ComprobadorSumaIgual` es un programa simple pero efectivo que juega un papel crucial en sistemas donde la precisión en cálculos numéricos es vital.
+### Utilidad Práctica
+En resumen, `ComprobadorDeAdolescentes` es una herramienta eficaz que ofrece una solución simple y directa para verificar la presencia de adolescentes en un conjunto de edades.
+Este programa mejora la eficiencia de los procesos de verificación y es fácil de integrar en sistemas más amplios que requieran tales comprobaciones de edad.
