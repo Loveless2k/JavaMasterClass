@@ -1,4 +1,4 @@
-package class_14;
+package clase_14;
 
 public class ComprobadorSumasIguales {
 
