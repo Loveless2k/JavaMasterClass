@@ -1,56 +1,47 @@
 # Problema
-Imagina que estás trabajando en un proyecto que requiere el seguimiento del tiempo en un formato extenso, como podría ser el registro del tiempo total de operación de una máquina o el tiempo de servicio de un empleado expresado en minutos,
-y necesitas convertir ese tiempo a un formato más comprensible en términos de años y días.
+Imagina que estás creando un sistema de votación electrónica donde necesitas verificar si los resultados de tres máquinas diferentes son consistentes.
+Este programa podría utilizarse para determinar rápidamente si los números de votos registrados son idénticos, diferentes o si hay alguna inconsistencia.
 
 ### Enunciado del Problema
-Desarrolla un programa que convierta una cantidad de minutos en años y días.
-Este programa debe validar que los minutos sean positivos y luego realizar la conversión adecuada para presentar cuántos años completos y días restantes representan esos minutos.
+Desarrolla un programa que determine la relación entre tres números enteros dados: si todos son iguales, si todos son diferentes, o ninguno de los dos casos anteriores.
 
 ### Paso a Paso para Resolver el Problema
 
-1. **Validar la entrada:**
-   - Verifica que el número de minutos proporcionado sea mayor o igual a cero. Si no lo es, imprime un mensaje de error y termina la ejecución del método.
+1. **Validar los Números:**
+    - Verifica si alguno de los números proporcionados es negativo. Si alguno lo es, imprime un mensaje de error y finaliza el método.
 
-2. **Realizar cálculos:**
-   - Convertir los minutos a horas dividiendo por 60.
-   - Convertir las horas a días dividiendo por 24.
-   - Convertir los días a años dividiendo por 365.
-   - Calcular los días restantes usando el operador de módulo con 365 para obtener el remanente después de extraer los años completos.
+2. **Comparar los Números:**
+    - Usa condiciones para determinar si los tres números son iguales.
+    - Verifica si los tres números son diferentes.
+    - Si los números no cumplen ninguna de las condiciones anteriores, determina que ni todos son iguales ni todos son diferentes.
 
-3. **Imprimir el resultado:**
-   - Formatea y muestra el resultado en el formato deseado, mostrando los años y los días restantes calculados.
-
-### Breve Descripción del Ejercicio
-Este programa, `CalculadoraDeMinutosAnhiosYDias`, convierte minutos a años y días, proporcionando una manera simple y efectiva de entender grandes lapsos de tiempo expresados inicialmente en minutos.
-Ideal para aplicaciones de gestión de tiempo o historiales de servicio.
+3. **Imprimir Resultados:**
+    - Imprime un mensaje apropiado basado en las comparaciones anteriores.
 
 ## Solución propuesta
-El programa `CalculadoraDeMinutosAYearsDias` en Java es una herramienta diseñada para convertir una cantidad de minutos en un formato más comprensible y convencional, expresado en años y días.
-Este tipo de funcionalidad es útil en diversos contextos donde se requiere representar el tiempo de forma extensa y más intuitiva, como en el seguimiento de la duración de proyectos, el tiempo de servicio de empleados, o el funcionamiento de equipos.
+El programa `ImpresorDeIgualdad` en Java es una aplicación diseñada para evaluar tres números enteros y determinar su relación entre sí: si son todos iguales, todos diferentes, o ninguno de estos casos.
+Este tipo de funcionalidad es útil en situaciones donde se necesita confirmar consistencias o discrepancias entre valores, como en sistemas de control de calidad, verificaciones de integridad de datos, o en ejemplos educativos para ilustrar la lógica condicional.
 
 ### Descripción de Componentes
 
 **1. Método `main`:**
-- Funciona como el punto de entrada del programa, donde se hacen llamadas al método `imprimirAnhiosYDias` con diferentes valores de entrada para demostrar la funcionalidad de la conversión de minutos a años y días.
+- Actúa como el punto de entrada del programa y realiza pruebas del método `imprimirIgualdad` con varios conjuntos de valores. Cada llamada está diseñada para demostrar una de las posibles salidas del método basado en diferentes combinaciones de números.
 
-**2. Método `imprimirAñosYDias`:**
-- **Parámetro:** Acepta un parámetro `minutos` de tipo `long`, que representa la cantidad de minutos a convertir.
-- **Validación:** Verifica que la cantidad de minutos no sea negativa. Si es negativa, imprime "Valor inválido" y termina la ejecución prematuramente.
-- **Cálculos:**
-   - **Conversión a horas:** Divide los minutos por 60 para obtener el total de horas.
-   - **Conversión a días:** Divide las horas totales por 24 para determinar la cantidad de días.
-   - **Conversión a años:** Divide los días por 365 para encontrar el número de años completos.
-   - **Días restantes:** Usa el operador de módulo (`%`) con 365 para calcular los días que sobran después de contabilizar los años completos.
-- **Salida:** Imprime el resultado en el formato "minutos min = años a y días d", proporcionando una representación clara y directa del tiempo en términos más largos.
+**2. Método `imprimirIgualdad`:**
+- **Parámetros:** Recibe tres enteros (`primerNumero`, `segundoNumero`, `tercerNumero`).
+- **Validación de Entrada:** Verifica inicialmente si alguno de los números es negativo. Si encuentra un valor negativo, imprime "Valor inválido" y finaliza la ejecución.
+- **Comparación de Igualdad:** Evalúa si los tres números son iguales. Si es así, imprime "Todos los números son iguales".
+- **Comparación de Diferencia:** Chequea si los tres números son completamente distintos entre sí. Si ninguno de los números es igual a otro, imprime "Todos los números son diferentes".
+- **Condicional Restante:** Si los números no cumplen con las condiciones anteriores, imprime "Ni todos son iguales ni todos son diferentes".
 
 ### Funcionalidad del Programa
-Este programa es especialmente valioso para contextos en los que se necesita una perspectiva a largo plazo del tiempo, como en la gestión de recursos humanos para calcular el tiempo de servicio de los empleados,
-o en mantenimiento de equipos para monitorear períodos prolongados de actividad. Convertir minutos a años y días hace que estas medidas sean más accesibles y fáciles de entender para la toma de decisiones y evaluaciones.
+Este programa simplifica la tarea de comparar tres números y ofrece una respuesta directa sobre su relación.
+Es una herramienta práctica para cualquier situación que requiera una rápida validación de igualdad o diferencia entre tres valores, facilitando decisiones basadas en la consistencia de los datos o en su variabilidad.
 
 ### Buenas Prácticas y Consideraciones
 
-- **Validación de entrada:** Es crucial para evitar cálculos incorrectos y garantizar que el programa maneje solo datos válidos.
-- **Uso de tipos de datos adecuados:** El uso de `long` para las variables asegura que el programa pueda manejar grandes cantidades de minutos sin problemas de desbordamiento.
-- **Claridad en la salida:** La salida es clara y directa, facilitando la comprensión inmediata de los resultados por parte de los usuarios.
+- **Claridad en los Mensajes de Salida:** Los mensajes de salida están claramente definidos para informar al usuario exactamente qué relación tienen los números.
+- **Validación Robusta:** El programa gestiona adecuadamente los valores negativos, previniendo cálculos incorrectos o no deseados.
+- **Extensibilidad:** Aunque el programa actual maneja específicamente tres números, la lógica puede extenderse o modificarse fácilmente para manejar más números o diferentes tipos de comparaciones según sea necesario.
 
-En conclusión, `CalculadoraDeMinutosAnhiosYDias` demuestra una implementación eficaz y práctica de métodos para convertir y presentar el tiempo en formatos más grandes y manejables, proporcionando herramientas útiles para la gestión efectiva del tiempo en diversas aplicaciones.
+En resumen, `ImpresorDeIgualdad` es un ejemplo efectivo de cómo implementar la lógica condicional en programas para realizar comparaciones esenciales y proporcionar respuestas claras basadas en las entradas proporcionadas.
