@@ -1,94 +1,183 @@
-# Operador Ternario
-El operador ternario en Java es una forma compacta de la instrucción if-else que permite asignar valores a variables bajo ciertas condiciones en una sola línea de código. Este operador es útil para simplificar su código cuando necesita realizar asignaciones condicionales simples. La estructura básica del operador ternario es la siguiente:
+# Switch
+El **switch** es una estructura de control en Java que permite ejecutar diferentes bloques de código en función del valor de una variable. Es una alternativa más eficiente y legible a múltiples sentencias `if-else` cuando se trata de comparar una misma variable contra múltiples valores.
 
-```
-variable = (condición) ? expresión1 : expresión2;
-```
+### Switch Tradicional
 
-### Cómo Funciona
+El switch tradicional en Java funciona como sigue:
 
-- **Condición**: Es una expresión booleana que se evalúa para determinar cuál de las dos otras expresiones debe ser ejecutada.
-- **Expresión1**: Es el valor que la variable tomará si la condición es `true`.
-- **Expresión2**: Es el valor que la variable tomará si la condición es `false`.
+1. **Sintaxis Básica**:
+   ```java
+   switch (variable) {
+       case valor1:
+           // Código a ejecutar si variable == valor1
+           break;
+       case valor2:
+           // Código a ejecutar si variable == valor2
+           break;
+       default:
+           // Código a ejecutar si la variable no coincide con ningún caso
+   }
+   ```
+    - **variable**: Es la variable cuyo valor se evalúa.
+    - **case**: Representa un valor específico que se compara con la variable.
+    - **break**: Termina la ejecución del bloque switch y previene la ejecución de los siguientes bloques case (conocido como "fallthrough").
+    - **default**: Opcional. Se ejecuta si ninguno de los casos coincide con el valor de la variable.
 
-### Ejemplos de Uso del Operador Ternario
+2. **Ejemplo**:
+   ```java
+   int mes = 3;
+   switch (mes) {
+       case 1:
+           System.out.println("Enero");
+           break;
+       case 2:
+           System.out.println("Febrero");
+           break;
+       case 3:
+           System.out.println("Marzo");
+           break;
+       default:
+           System.out.println("Otro mes");
+   }
+   ```
+   En este ejemplo, imprimirá "Marzo" porque el valor de `mes` es 3.
 
-**Ejemplo 1: Asignación Simple**
-```java
-int edad = 18;
-String esMayorDeEdad = (edad >= 18) ? "Sí" : "No";
-System.out.println("¿Es mayor de edad? " + esMayorDeEdad);
-```
-Este código determinará si alguien es mayor de edad basado en la variable `edad`.
+### Switch Mejorado (Switch Expressions)
 
-**Ejemplo 2: Cálculo Condicional**
-```java
-int puntaje = 75;
-String calificacion = (puntaje >= 90) ? "Excelente" : (puntaje > 50) ? "Aprobado" : "Reprobado";
-System.out.println("Calificación: " + calificacion);
-```
-Este código utiliza un operador ternario anidado para asignar una calificación basada en el puntaje. Si el puntaje es 90 o más, la calificación será "Excelente". Si es más de 50 pero menos de 90, será "Aprobado". De lo contrario, será "Reprobado".
+A partir de Java 12, se introdujo el switch mejorado o "switch expressions", que permite una sintaxis más flexible y funcional:
+
+1. **Sintaxis Básica**:
+   ```java
+   String resultado = switch (variable) {
+       case valor1 -> "Resultado1";
+       case valor2 -> "Resultado2";
+       default -> "Resultado por defecto";
+   };
+   ```
+    - En lugar de bloques de código separados por `break`, cada caso devuelve directamente un valor.
+    - Las flechas (`->`) separan los valores de los casos de sus resultados, eliminando la necesidad de `break`.
+
+También existe una versión híbrida entre switch tradicional y switch expressions, que no incluye las flechas sino que mantiene los dos puntos en los case, pero sigue siendo en esencia un switch mejorado.
+2. **Ejemplo**:
+   ```java
+   int dia = 2;
+   String tipoDeDia = switch (dia) {
+       case 1, 7: "Fin de semana";
+       case 2, 3, 4, 5, 6: "Día laboral";
+       default: "Entrada inválida";
+   };
+   System.out.println(tipoDeDia);
+   ```
+   Este ejemplo determina si un día es parte del fin de semana o un día laboral. Imprimirá "Día laboral" porque el valor de `dia` es 2.
+
+### Diferencias Clave
+
+- **Sintaxis**: El switch mejorado usa una sintaxis de flecha que simplifica los casos, eliminando la necesidad de `break`.
+- **Uso de Expresiones**: El switch mejorado permite el retorno directo de valores, lo que lo hace útil en situaciones donde se necesita asignar un resultado a una variable basado en una condición.
+- **Prevención de Fallthrough**: En el switch tradicional, omitir `break` puede causar que múltiples bloques se ejecuten secuencialmente, mientras que el switch mejorado evita esto por diseño.
 
 ### Buenas Prácticas y Consejos
 
-- **Legibilidad**: Aunque el operador ternario puede hacer que el código sea más conciso, usarlo en exceso o en condiciones muy complejas puede hacer que el código sea difícil de leer. Limita su uso a condiciones simples.
-
-- **Evitar Anidaciones Complejas**: Mientras que es técnicamente posible anidar operadores ternarios (como se muestra en el Ejemplo 2), esto puede hacer que el código sea confuso. Si necesitas múltiples condiciones, considera usar declaraciones `if-else` tradicionales para mejorar la claridad.
-
-- **No usar para Efectos Secundarios**: Evita usar el operador ternario para ejecutar métodos que tienen efectos secundarios (como modificar variables globales). El operador ternario debe usarse principalmente para asignar valores a variables basándose en condiciones.
-
-- **Claridad en la Condición**: Asegúrate de que la condición y las expresiones en el operador ternario sean claras y concisas. Utiliza paréntesis si es necesario para hacer la expresión más comprensible.
-
-### Conclusión
-
-El operador ternario es una herramienta poderosa en Java que, si se utiliza correctamente, puede hacer que el código sea más limpio y fácil de entender. Es ideal para condiciones simples y asignaciones directas, pero debe usarse con moderación y con cuidado para mantener la legibilidad del código.
+- **Legibilidad**: Usa el switch mejorado cuando necesites una operación más expresiva y concisa, especialmente útil para asignar valores a variables basadas en una condición.
+- **Prevención de errores**: El switch mejorado ayuda a evitar errores comunes como el fallthrough no intencional.
+- **Compatibilidad**: Considera la versión de Java que estás usando, ya que el switch mejorado solo está disponible desde Java 12 en adelante.
 
 ## Problema
-Imagina que estás desarrollando una aplicación para dueños de mascotas que ayuda a determinar si es seguro que sus gatos jueguen afuera basado en la temperatura actual. Durante el verano, los gatos pueden tolerar un calor mayor debido al clima general, mientras que en otros meses, las temperaturas más altas podrían ser peligrosas.
+Supón que estás construyendo un sistema para un negocio que requiere realizar informes trimestrales. Necesitas saber en qué trimestre procesar cada informe basado en un mes dado. Este programa puede tomar el nombre de un mes como entrada y devolver el trimestre correspondiente, lo cual es esencial para organizar y programar los informes adecuadamente.
 
 ### Enunciado del Problema
-Desarrolla un programa que determine si un gato está jugando basado en la temperatura actual y si es o no verano. El gato juega cuando la temperatura está entre 25 y 35 grados Celsius, pero en verano el límite superior se extiende a 45 grados.
+Desarrolla un programa que determine en qué trimestre del año se encuentra un mes dado. El programa debe ser capaz de gestionar cualquier entrada de mes, independientemente de cómo se escriba (mayúsculas o minúsculas) y debe responder adecuadamente si el mes no es válido.
+Vamos a añadir, además, un desafío.
+Intenta programar tu solución con los 2 tipos de switch disponibles (3 si consideras el híbrido).
 
 ### Paso a Paso para Resolver el Problema
 
-1. **Definir la Función de Verificación:**
-   - Crear un método `estaJugandoElGato` que acepte un booleano `esVerano` y un entero `temperatura` como parámetros.
+1. **Definir Constantes para los Meses:**
+    - Define constantes para cada mes del año para evitar errores de tipeo y facilitar cambios en el código.
 
-2. **Establecer Límites de Temperatura:**
-   - Utilizar un operador ternario para definir el límite superior de la temperatura. Si es verano (`esVerano` es verdadero), el límite superior es 45 grados. De lo contrario, es 35 grados.
-
-3. **Evaluar la Condición de Juego:**
-   - Comprobar si la temperatura actual está dentro del rango permitido (entre 25 grados y el límite superior calculado). Retornar `true` si está dentro del rango, indicando que el gato está jugando, o `false` si no.
-
-4. **Probar la Función:**
-   - En el método `main`, realizar llamadas a `estaJugandoElGato` con diferentes valores para simular distintos escenarios climáticos y verificar la función.
+2. **Implementar Método para Obtener el Trimestre:**
+    - Crea un método que utilice una declaración `switch` para determinar el trimestre basándose en el mes proporcionado.
+    - Convierte el mes a mayúsculas para manejar diferentes formatos de entrada.
+    - Usa bloques `case` para agrupar los meses en trimestres.
+    - Retorna el trimestre correspondiente o un mensaje de error si el mes es inválido.
 
 ## Solución propuesta
-El programa `GatoJugando` en Java es diseñado para determinar si un gato está jugando basado en la temperatura ambiente. La condición para que el gato juegue depende de si es verano o no, dado que las temperaturas aceptables para que un gato juegue al aire libre varían según la estación.
+El código presentado en la clase `CalculadorDeTrimestre` de Java ilustra diferentes formas de implementar el `switch` para determinar a qué trimestre del año pertenece un mes dado. El código muestra tres variantes: un `switch` tradicional, un `switch` híbrido (mezcla entre tradicional y de expresión), y un `switch` de expresión mejorado. Cada uno de estos métodos maneja el mismo conjunto de lógica de negocio, pero de manera ligeramente diferente en términos de sintaxis y estructura.
 
-### Descripción de Componentes
+### Método `obtenerTrimestreSwitchTradicional`
 
-**1. Método `main`:**
-- Funciona como el punto de entrada del programa, realizando varias llamadas al método `estaJugandoElGato` para demostrar cómo varían las respuestas en diferentes condiciones climáticas y estacionales.
+Este método utiliza un `switch` tradicional, donde cada caso (`case`) concluye con un `break` para evitar el fallthrough. Esto es, sin el `break`, el programa seguiría ejecutando los casos subsiguientes hasta encontrar un `break` o hasta el final del `switch`.
 
-**2. Método `estaJugandoElGato`:**
-- **Parámetros:**
-   - `esVerano`: un booleano que indica si actualmente es verano o no.
-   - `temperatura`: un entero que representa la temperatura ambiente en grados Celsius.
-- **Proceso de Decisión:**
-   - Utiliza un operador ternario para determinar el límite superior de la temperatura en la que el gato puede jugar de forma segura. Si es verano (`esVerano` es verdadero), el límite superior es 45 grados Celsius; de lo contrario, es 35 grados.
-   - Evalúa si la temperatura actual está dentro del rango seguro (entre 25 grados y el límite superior calculado). Retorna `true` si la temperatura está dentro de este rango, indicando que el gato puede jugar afuera; de lo contrario, retorna `false`.
+```java
+public static String obtenerTrimestreSwitchTradicional(String mes) {
+    String trimestre = "";
+    switch (mes.toUpperCase()) {
+        case ENE, FEB, MAR:
+            trimestre = "1er trimestre";
+            break;
+        case ABR, MAY, JUN:
+            trimestre = "2do trimestre";
+            break;
+        case JUL, AGO, SEP:
+            trimestre = "3do trimestre";
+            break;
+        case OCT, NOV, DIC:
+            trimestre = "4do trimestre";
+            break;
+        default:
+            trimestre = "Mes inválido";
+    }
+    return trimestre;
+}
+```
 
-### Funcionalidad del Programa
+### Método `obtenerTrimestreSwitchHibrido`
 
-El programa ofrece una forma rápida y eficiente de determinar si las condiciones ambientales son seguras para que un gato juegue al aire libre, basándose en la temperatura actual y si es o no período de verano. Esta funcionalidad es útil en aplicaciones destinadas a dueños de mascotas que desean garantizar la seguridad y el bienestar de sus gatos.
+Este método es un híbrido entre el `switch` tradicional y el `switch` de expresión, usando la estructura del `switch` tradicional pero con retornos directos en cada caso en lugar de usar una variable temporal y `break`. Esta forma aún evita el fallthrough al retornar directamente desde cada caso.
 
-### Buenas Prácticas y Consideraciones
+```java
+public static String obtenerTrimestreSwitchHibrido(String mes) {
+    switch (mes.toUpperCase()) {
+        case ENE, FEB, MAR:
+            return "1er trimestre";
+        case ABR, MAY, JUN:
+            return "2do trimestre";
+        case JUL, AGO, SEP:
+            return "3er trimestre";
+        case OCT, NOV, DIC:
+            return "4to trimestre";
+        default:
+            return "Mes inválido";
+    }
+}
+```
 
-- **Claro y Conciso**: El uso del operador ternario para definir el límite superior de la temperatura hace que el método sea compacto y fácil de entender.
-- **Validación de Entradas**: Aunque el programa actual asume que la entrada de temperatura siempre es un entero válido, en aplicaciones reales sería prudente agregar más validaciones para manejar entradas inesperadas o inválidas.
-- **Expansión y Escalabilidad**: El método podría expandirse fácilmente para considerar otros factores que podrían afectar la seguridad del gato para jugar afuera, como las condiciones del viento o la humedad.
+### Método `obtenerTrimestreMejorado`
+
+Este método emplea la forma completa de las `switch expressions` introducidas en Java 14, donde cada caso directamente retorna un valor usando `->`. Esta forma es más concisa y clara, eliminando la necesidad de `break` y simplificando la sintaxis general del `switch`.
+
+```java
+public static String obtenerTrimestreMejorado(String mes) {
+    return switch (mes.toUpperCase()) {
+        case ENE, FEB, MAR -> "1er trimestre";
+        case ABR, MAY, JUN -> "2do trimestre";
+        case JUL, AGO, SEP -> "3er trimestre";
+        case OCT, NOV, DIC -> "4to trimestre";
+        default -> "Mes inválido";
+    };
+}
+```
+
+### Método `agregaSaltoLinea`
+
+Este método simple añade un salto de línea en la consola para separar las salidas de cada prueba del `switch`, mejorando la legibilidad de los resultados.
+
+```java
+public static void agregaSaltoLinea() {
+    System.out.println("\n");
+}
+```
 
 ### Conclusión
 
-`GatoJugando` demuestra una implementación eficaz de lógica condicional para una aplicación del mundo real, utilizando operadores ternarios para manejar variaciones condicionales de manera sucinta. Este enfoque simplifica la función y facilita futuras modificaciones o expansiones del código.
+El código demuestra cómo las diferentes formas de `switch` pueden ser utilizadas en Java para implementar la misma lógica de forma más o menos verbosa o elegante. La elección entre estas formas puede depender del estilo de codificación preferido, la claridad, o la versión de Java que se esté utilizando. El `switch` de expresión ofrece la mayor claridad y concisión, especialmente útil en situaciones donde múltiples valores retornan un resultado único de manera directa.
