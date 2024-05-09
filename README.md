@@ -68,7 +68,8 @@ Este código define una clase pública HelloWorld con un método principal main,
 
 ### Paso 4: Compilar y Ejecutar el Programa
 #### Compilar el Programa:
-La mayoría de los IDEs modernos compilan automáticamente el código Java cuando se guarda. Si es necesario, puedes compilar manualmente desde el menú Build del IDE.
+La mayoría de los IDEs modernos compilan automáticamente el código Java cuando se guarda. 
+Si es necesario, puedes compilar manualmente desde el menú Build del IDE.
 
 #### Ejecutar el Programa:
 Localiza el archivo HelloWorld.java en tu IDE.
