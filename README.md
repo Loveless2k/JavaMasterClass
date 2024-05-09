@@ -16,32 +16,43 @@ Si no lo es, imprime un mensaje indicando que hay un resto.
   6. Usa una condicional para imprimir un mensaje si hay un resto.
 
 ## Solución planteada
-De aquí en adelante, - spoilers -, discutiremos al respecto de la solución planteada.
-La solución proporcionada, contenida en la clase `DesafioOperador`, realiza una serie de operaciones aritméticas y lógicas para determinar si un total calculado es un múltiplo exacto de 40. 
-Aquí está el desglose de cada paso:
+El código en la clase `DesafioOperador` realiza una serie de operaciones aritméticas con dos valores iniciales, y posteriormente evalúa si el resultado de una operación específica (el módulo) es cero, para finalmente imprimir un mensaje en base al resultado de esta evaluación. A continuación se explica cada parte del código:
 
-### Inicialización de Variables de Precios:
-  - `primerValor`: Se inicializa con 20.00, simulando el costo del primer artículo.
-  - `segundoValor`: Se inicializa con 80.00, representando el costo del segundo artículo.
-    
-### Cálculo del Total:
-  - `tercerValor`: Se calcula como la suma de `primerValor` y `segundoValor`, y el resultado se multiplica por 100. Esto podría representar, por ejemplo, un ajuste de puntos o una promoción donde se amplifica el total gastado para aplicar a algún beneficio.
-    
-### Cálculo del Resto:
-  - `resto`: Se obtiene al aplicar el operador de módulo (%) al `tercerValor` usando 40.00 como divisor. El resultado indica si hay algún resto después de dividir el total entre 40.
+### Declaración de Variables
+```java
+double primerValor = 20.00d;
+double segundoValor = 80.00d;
+```
+Aquí se declaran e inicializan dos variables de tipo `double`, `primerValor` y `segundoValor`, con los valores `20.00` y `80.00` respectivamente. El sufijo `d` es opcional pero ayuda a clarificar que los números son de tipo `double`.
 
-### Evaluación de si hay Resto:
-  - `sinResto`: Es una variable booleana que será `true` si resto es igual a 0.00, lo que indicaría que `tercerValor` es un múltiplo exacto de 40, y `false` si hay algún resto.
+### Operación Aritmética Compuesta
+```java
+double tercerValor = (primerValor + segundoValor) * 100.00d;
+System.out.println("TercerValor = " + tercerValor);
+```
+En esta línea, se suman `primerValor` y `segundoValor`, y el resultado se multiplica por `100.00`. Esto es, `(20.00 + 80.00) * 100.00`, que resulta en `10000.00`. Luego, este resultado se almacena en la variable `tercerValor` y se imprime.
 
-### Impresión de Resultados:
-  - Se imprime el `tercerValor`, que es el total después de la promoción.
-  - Se imprime el `resto` para mostrar el resto de la división.
-  - Se imprime el valor de `sinResto` para indicar si se cumple la condición de no tener resto.
+### Cálculo del Resto
+```java
+double resto = tercerValor % 40.00d;
+System.out.println("Resto = " + resto);
+```
+Se calcula el resto de la división de `tercerValor` por `40.00`. Dado que `10000.00 % 40.00` es `0.00`, el resultado almacenado y posteriormente impreso por `resto` es `0.00`.
 
-### Condicional para Mensaje Final:
-Se usa una estructura `if` con la negación de `sinResto (!sinResto)` como condición para determinar si se debe imprimir un mensaje. 
-Si `sinResto` es `false` (lo que significa que hay un resto), entonces se imprime el mensaje "Quedó algún resto". Este mensaje podría simbolizar una notificación al cliente sobre la ineligibilidad para el beneficio de la promoción.
-En resumen, el programa imita un escenario de una tienda donde se calcula si se cumple con una promoción específica basada en el total de la compra. 
+### Evaluación Booleana
+```java
+boolean sinResto = (resto == 0.00d);
+System.out.println("sinResto = " + sinResto);
+```
+Se evalúa si `resto` es exactamente `0.00`. Si es así, la variable booleana `sinResto` se establece en `true`. Se imprime el valor de `sinResto`, que en este caso sería `true`.
 
-Como habrás podido observar, en este desafío hemos incluído un nuevo elemento, el condicional. 
-En la próxima clase explicaremos cómo opera esta nueva incorporación en detalle.
+### Condicional para Impresión de Resultado
+```java
+if (!sinResto){
+    System.out.println("Quedó algún resto");
+}
+```
+Este bloque condicional verifica si `sinResto` es `false` utilizando el operador de negación `!`. Si `sinResto` fuera `false`, se imprimiría el mensaje `"Quedó algún resto"`. Dado que `sinResto` es `true`, este mensaje no se imprime.
+
+### Conclusión
+Este programa ilustra cómo realizar y combinar operaciones matemáticas básicas en Java, cómo manejar resultados booleanos basados en comparaciones, y cómo usar condicionales para controlar el flujo del programa basándose en resultados de operaciones aritméticas. El uso de este tipo de operaciones es común en muchas aplicaciones que requieren cálculos precisos y toma de decisiones basada en esos cálculos.
