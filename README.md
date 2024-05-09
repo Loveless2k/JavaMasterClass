@@ -284,29 +284,69 @@ Ya hasta esta parte se han incorporado varios términos en los que no se han ent
 Puedes encontrar el resultado de este ejercicio dentro de la carpeta `src` de este proyecto.
 
 ## Solución propuesta
-A partir de este punto - Spoilers - revisaremos la solución que dejé para este ejercicio.
-El código en cuestión define una clase en Java llamada `TiposPrimitivos` que contiene un único método, main, el cual es el punto de entrada cuando ejecutamos un programa en Java.
+El código de la clase `TiposPrimitivos` en Java realiza varias operaciones interesantes relacionadas con los tipos primitivos numéricos y sus usos prácticos. A continuación, se detalla cada parte del código:
 
-Dentro del método main, el código hace lo siguiente:
+### Impresión de Rangos de Valores de Tipos Primitivos
 
-### Imprime los Rangos de Valores de los Tipos Numéricos Primitivos:
-Utiliza `System.out.println` para mostrar en la consola los rangos mínimos y máximos de los tipos primitivos numéricos `byte`, `short`, `int`, y `long`. 
-Estos rangos son proporcionados por las constantes estáticas `MIN_VALUE` y `MAX_VALUE` definidas en sus respectivas clases envoltorio o clases contenedoras.
-### Declaración e Inicialización de Variables:
-Declara una variable de tipo `byte` y la inicializa con el valor 50.  
-Declara una variable de tipo `short` y la inicializa con el valor mínimo posible para un short más 100.  
-Declara una variable de tipo `int` y la inicializa con el valor máximo posible para un int menos 1000.  
-### Impresión de los Valores de las Variables:
-Imprime los valores de las variables `valorByte`, `valorShort` y `valorInt` utilizando `System.out.println`.
-### Suma de Valores y Impresión del Resultado:
-Calcula la suma de las tres variables anteriores y la guarda en una variable de tipo int llamada `sumaDeTres`.  
-Imprime el resultado de esta suma.
-### Cálculo y Impresión de un Valor Long:
-Calcula un valor long llamado `valorLong`, sumando 50000L a 10 veces el valor de `sumaDeTres`. 
-El uso del sufijo `L` indica que los números 50000 y 10 deben ser tratados como literales de tipo `long`.  
-Imprime el valor calculado de valorLong.
-### Explica el Cálculo Realizado para valorLong:
-Proporciona una explicación de cómo se calculó `valorLong`, aclarando la operación realizada en el paso anterior.
+El código comienza imprimiendo los rangos de valores mínimos y máximos para los tipos primitivos numéricos `byte`, `short`, `int`, y `long`. Estos valores están definidos en las clases wrapper correspondientes (`Byte`, `Short`, `Integer`, `Long`) y son útiles para entender las limitaciones de cada tipo en cuanto a almacenamiento de datos numéricos.
 
-Este programa demuestra cómo trabajar con tipos de datos primitivos numéricos en Java y cómo realizar operaciones aritméticas básicas con ellos. 
-Además, ilustra la conversión implícita de tipos que sucede cuando valores de tipos más pequeños (`byte` y `short`) se suman a tipos más grandes (`int`), y cómo las operaciones con literales `long` requieren el sufijo `L` para evitar la interpretación por defecto como int.
+```java
+System.out.println("Rango de valores para byte: de " + Byte.MIN_VALUE + " a " + Byte.MAX_VALUE);
+System.out.println("Rango de valores para short: de " + Short.MIN_VALUE + " a " + Short.MAX_VALUE);
+System.out.println("Rango de valores para int: de " + Integer.MIN_VALUE + " a " + Integer.MAX_VALUE);
+System.out.println("Rango de valores para long: de " + Long.MIN_VALUE + " a " + Long.MAX_VALUE);
+```
+
+### Declaración e Inicialización de Variables
+
+A continuación, se declaran e inicializan variables de tipo `byte`, `short`, e `int`:
+
+- **Byte**: Se inicializa con el valor 50.
+- **Short**: Se inicializa sumando 100 al mínimo valor que puede tomar un `short`. Esto se hace para evitar un desbordamiento de valor y para mostrar cómo se puede ajustar el rango de valores operativos de un tipo `short`.
+- **Int**: Se inicializa restando 1000 al máximo valor que puede tomar un `int`, demostrando cómo manejar valores cerca del límite superior de un tipo.
+
+```java
+byte valorByte = 50;
+short valorShort = (short) (Short.MIN_VALUE + 100);
+int valorInt = Integer.MAX_VALUE - 1000;
+```
+
+### Impresión de los Valores de las Variables
+
+Se imprimen los valores almacenados en cada una de las variables declaradas anteriormente para verificar que se hayan inicializado correctamente.
+
+```java
+System.out.println("Valor de valorByte = " + valorByte);
+System.out.println("Valor de valorShort = " + valorShort);
+System.out.println("Valor de valorInt = " + valorInt);
+```
+
+### Cálculo y Impresión de una Suma
+
+El programa calcula la suma de los valores almacenados en las variables `valorByte`, `valorShort`, y `valorInt`. Luego imprime el resultado de esta suma.
+
+```java
+int sumaDeTres = valorByte + valorShort + valorInt;
+System.out.println("La suma de valorByte, valorShort y valorInt es = " + sumaDeTres);
+```
+
+### Cálculo y Impresión de una Operación más Compleja
+
+Finalmente, se realiza un cálculo más complejo donde se multiplica la suma anterior por 10 y se suma 50,000. El resultado se almacena en una variable de tipo `long` para acomodar el potencialmente gran valor resultante y se imprime.
+
+```java
+long valorLong = 50000L + (10L * sumaDeTres);
+System.out.println("Resultado de valorLong = " + valorLong);
+```
+
+### Explicación del Cálculo Realizado
+
+Se proporciona una explicación detallada de cómo se realizó el cálculo para `valorLong`, lo que es útil para entender la lógica detrás de las operaciones y cómo los valores de diferentes tipos primitivos interactúan en cálculos mixtos.
+
+```java
+System.out.println("valorLong se calcula sumando 50,000 a 10 veces la suma de valorByte, valorShort y valorInt");
+```
+
+### Conclusión
+
+Este código proporciona una excelente demostración práctica de cómo trabajar con diferentes tipos primitivos en Java, cómo manejar la conversión y promoción de tipos en operaciones aritméticas y cómo asegurarse de que los valores permanezcan dentro de los límites seguros para evitar errores de desbordamiento o precisión.
