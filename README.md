@@ -103,6 +103,58 @@ Su sintaxis es la siguiente: `condición ? expresión1 : expresión2` donde:
   - `Expresión2` es "Menor de edad", que es el valor asignado a mensaje si la condición es false.
   - Por lo tanto, como edad es 20, que es mayor o igual a 18, la condición resulta `true`, y mensaje se establece en "Adulto".
 
+### Los Comentarios
+Los comentarios en Java son anotaciones en el código fuente que el compilador ignora, es decir, no tienen efecto en la ejecución del programa.
+Su propósito principal es proporcionar información adicional sobre el código, hacerlo más comprensible para los desarrolladores humanos, y facilitar tanto la documentación como el mantenimiento del software. En Java, hay tres tipos principales de comentarios:
+
+#### 1. Comentarios de una sola línea
+Utilizan dos barras diagonales (//) y todo el texto que sigue a estas barras en la misma línea es tratado como un comentario. Son útiles para breves anotaciones o para desactivar rápidamente una línea de código durante las pruebas.
+
+Ejemplo:
+```java
+// Esto es un comentario de una sola línea
+int i = 10; // Este comentario sigue a una declaración
+```
+
+#### 2. Comentarios de varias líneas o comentarios en bloque
+Empiezan con /* y terminan con */. Todo el texto encerrado entre estos dos marcadores se considera un comentario, independientemente de las líneas que ocupe.
+Son útiles para descripciones más extensas o para comentar bloques de código durante la depuración o el desarrollo.
+
+Ejemplo:
+```java
+/* Este es un comentario de varias líneas.
+   Se puede utilizar para explicar con más detalle el código que le sigue
+   o que está dentro de él. */
+int x = 100;
+```
+
+#### 3. Comentarios de documento o Javadoc
+Comienzan con /** y terminan con */. Estos comentarios son utilizados para generar documentación automática del código en formato HTML usando la herramienta Javadoc de Java.
+Los comentarios Javadoc pueden incluir etiquetas que proporcionan información estructurada sobre el código, como parámetros de un método, valor de retorno, excepciones que puede lanzar, etc.
+
+Ejemplo:
+```java
+/**
+ * Calcula la suma de dos enteros.
+ * @param a el primer entero.
+ * @param b el segundo entero.
+ * @return la suma de 'a' y 'b'.
+ */
+public int sumar(int a, int b) {
+    return a + b;
+}
+```
+
+El comentario que precede a la función convertirLibrasAKilogramos es un ejemplo de cómo utilizar comentarios de documentación en Java.
+Estos comentarios están diseñados para ser procesados por la herramienta Javadoc de Java para generar documentación HTML automática del código.
+Aquí se explica claramente:
+
+- `Propósito de la función`: Describe qué hace la función —en este caso, convierte libras a kilogramos.
+- `Parámetros`: Detalla los parámetros que acepta la función, incluyendo su tipo y significado.
+- `Valor de retorno`: Describe lo que devuelve la función, permitiendo a otros desarrolladores entender rápidamente la funcionalidad sin necesidad de leer el código detalladamente.
+
+El uso de este tipo de comentarios es crucial para mantener el código accesible y comprensible, especialmente en entornos donde varios desarrolladores trabajan en el mismo proyecto o cuando se prepara el código para su uso o revisión por otros en el futuro.
+
 # Desafío **libras a kilogramos**
 Imagina que estás cocinando una receta que fue diseñada en un país que utiliza el sistema métrico. 
 Todos los ingredientes están listados en kilogramos, pero tu balanza solo mide en libras. 
@@ -130,94 +182,55 @@ Kilogramos convertidos = 90.718474
 ```
 
 ## Observaciones de la solución planteada
-A continuación, -spoilers- daré algunas observaciones en función de la solución propuesta a este problema.
+El código de la clase `LibrasAKilogramos` en Java es una aplicación sencilla diseñada para convertir un peso dado en libras a kilogramos. A continuación, se explica cada componente del código y su función:
 
-### Constante global de la clase
-La variable FACTOR_CONVERSION_LIBRAS_A_KILOGRAMOS en el programa Java LibrasAKilogramos está declarada al principio de la clase y marcada como static final por varias razones estratégicas y de diseño de software que optimizan la organización del código, la eficiencia y la reutilización:
+### Componentes del Código
 
-#### 1. Constante global de la clase
-La declaración de esta variable al principio de la clase, como `static final` indica que es una constante global para toda la clase. El uso de static significa que la variable pertenece a la clase misma y no a una instancia específica de la clase.
-Esto tiene varias implicaciones:
+1. **Constante de Conversión**:
+   ```java
+   private static final double FACTOR_CONVERSION_LIBRAS_A_KILOGRAMOS = 0.45359237;
+   ```
+   Esta línea declara una constante (`static final`) llamada `FACTOR_CONVERSION_LIBRAS_A_KILOGRAMOS`. El valor `0.45359237` es el factor estándar utilizado para convertir libras a kilogramos. Al ser una constante, el valor no puede cambiar en ningún momento después de su inicialización, y al ser `static`, es compartido por todas las instancias de la clase.
 
-  - `Memoria`: Se crea una única copia de la variable, compartida por todas las instancias de la clase, lo que es más eficiente en términos de uso de memoria.
-  - `Acceso`: Cualquier método de la clase puede acceder a esta variable sin necesidad de crear un objeto de la clase, lo que es útil para valores que son universales y no cambian de un objeto a otro, como el factor de conversión entre libras y kilogramos.
+2. **Método `main`**:
+   ```java
+   public static void main(String[] args) {
+       double libras = 200;
+       double kilogramosConvertidos = convertirLibrasAKilogramos(libras);
+       System.out.println("Kilogramos convertidos = " + kilogramosConvertidos);
+   }
+   ```
+   Este es el método principal (`main`) de la aplicación, el punto de entrada cuando se ejecuta el programa.
+    - **Declaración e Inicialización de Variables**: Define una variable `libras` y la inicializa con `200`, representando el peso en libras que se desea convertir.
+    - **Llamada a Función de Conversión**: Invoca el método `convertirLibrasAKilogramos`, pasando el valor de `libras` como argumento, y guarda el resultado retornado en `kilogramosConvertidos`.
+    - **Impresión del Resultado**: Imprime el resultado de la conversión en la consola, mostrando el peso en kilogramos.
 
-Si esto no te hace sentido ahora, no te preocupes. Más adelante, cuando abordemos la programación orientada a objetos entraremos en detalle respecto de la palabra clave `static` y porqué se dice que especifica que un elemento pertenece a la misma clase y no a una instancia de la clase.
-También explicaré con mayor profunidad lo que son las instancias u objetos, entre otros conceptos que en este minuto no vienen al caso.
+3. **Método `convertirLibrasAKilogramos`**:
+   ```java
+   public static double convertirLibrasAKilogramos(double libras) {
+       return libras * FACTOR_CONVERSION_LIBRAS_A_KILOGRAMOS;
+   }
+   ```
+   Este método es responsable de realizar la conversión de libras a kilogramos.
+    - **Parámetro**: Recibe un valor de tipo `double` que representa el peso en libras.
+    - **Proceso de Conversión**: Multiplica el valor en libras por la constante de conversión `FACTOR_CONVERSION_LIBRAS_A_KILOGRAMOS`.
+    - **Retorno**: Devuelve el resultado de la multiplicación, que es el peso en kilogramos.
 
-#### 2. Inmutabilidad
-Al ser una constante (final), su valor no puede ser modificado una vez establecido. 
-Esto es especialmente importante para valores que representan constantes universales o físicas, como los factores de conversión, que deben permanecer constantes a lo largo de toda la ejecución del programa para evitar errores de cálculo y mejorar la seguridad del código.
-
-#### 3. Organización y legibilidad
-Declarar esta variable al inicio de la clase mejora la legibilidad y la estructura del código:
-
-  - `Visibilidad`: Al colocarla en un lugar prominente al inicio de la clase, se señala claramente a otros desarrolladores que esta es una constante globaL, fundamental para las operaciones de la clase. 
-  - `Mantenimiento`: Si el factor de conversión necesitara ser ajustado (por ejemplo, si se adopta un estándar de precisión diferente), hay un único lugar para hacer esta modificación, lo cual reduce el riesgo de errores y facilita las actualizaciones.
-    
-#### 4. Reusabilidad
-Si otros métodos dentro de la misma clase o incluso fuera de ella necesitaran este factor de conversión, podrían acceder a él fácilmente sin necesidad de pasar el valor como parámetro o duplicar la declaración. Esto fomenta la reusabilidad del código y reduce la duplicidad.
+### Comentarios y Documentación
+El código también incluye comentarios adecuados que explican el propósito y la funcionalidad de las constantes, métodos y operaciones realizadas. Esto incluye un comentario de documentación (JavaDoc) para el método `convertirLibrasAKilogramos`, que describe lo que hace el método, los parámetros que recibe y lo que retorna. Este tipo de documentación es crucial para mantener el código comprensible y mantenible, especialmente en entornos donde múltiples desarrolladores pueden trabajar en el mismo proyecto.
 
 ### Creación de una función adicional
 Si bien en este curso aún no hemos cubierto las funciones, en este ejemplo te adelanto su utilidad.
-En Java, el término "función" se usa a menudo de manera intercambiable con "método", aunque tradicionalmente en la programación, especialmente en otros lenguajes, pueden tener significados distintos. 
+En Java, el término "función" se usa a menudo de manera intercambiable con "método", aunque tradicionalmente en la programación, especialmente en otros lenguajes, pueden tener significados distintos.
 En Java, una función es esencialmente un bloque de código que realiza una tarea específica, está encapsulado dentro de una clase y se llama método. Pero sobre esto entraremos en detalle más adelante.
 
-La función convertirLibrasAKilogramos se crea para encapsular la lógica específica de la conversión de libras a kilogramos. 
+La función convertirLibrasAKilogramos se crea para encapsular la lógica específica de la conversión de libras a kilogramos.
 La decisión de separar esta lógica del cuerpo principal del método main tiene varios propósitos y beneficios:
 
-  - `Reusabilidad`: Al encapsular la lógica de conversión en su propia función, el código se puede reutilizar fácilmente en otras partes del programa sin necesidad de duplicar código. Si se necesitara realizar la misma operación en otro lugar, simplemente se podría llamar a esta función.
-  - `Organización`: Mejora la organización del código y lo hace más legible. Al tener la operación de conversión en una función separada, el método main se mantiene limpio y enfocado en la lógica de flujo del programa, como la entrada de datos y la presentación de resultados.
-  - `Mantenimiento`: Facilita la modificación y el mantenimiento del código, ya que cualquier cambio en el proceso de conversión se realiza en un solo lugar. Esto reduce el riesgo de errores y mejora la consistencia del código.
+- `Reusabilidad`: Al encapsular la lógica de conversión en su propia función, el código se puede reutilizar fácilmente en otras partes del programa sin necesidad de duplicar código. Si se necesitara realizar la misma operación en otro lugar, simplemente se podría llamar a esta función.
+- `Organización`: Mejora la organización del código y lo hace más legible. Al tener la operación de conversión en una función separada, el método main se mantiene limpio y enfocado en la lógica de flujo del programa, como la entrada de datos y la presentación de resultados.
+- `Mantenimiento`: Facilita la modificación y el mantenimiento del código, ya que cualquier cambio en el proceso de conversión se realiza en un solo lugar. Esto reduce el riesgo de errores y mejora la consistencia del código.
 
-### Los comentarios sobre la función
-Los comentarios en Java son anotaciones en el código fuente que el compilador ignora, es decir, no tienen efecto en la ejecución del programa. 
-Su propósito principal es proporcionar información adicional sobre el código, hacerlo más comprensible para los desarrolladores humanos, y facilitar tanto la documentación como el mantenimiento del software. En Java, hay tres tipos principales de comentarios:
+### Conclusión
+Este programa demuestra cómo implementar una simple conversión de unidades en Java, utilizando prácticas de codificación claras y eficientes, incluyendo el uso de constantes para valores que no cambian, métodos bien definidos para tareas específicas y comentarios para mejorar la legibilidad del código. Es un ejemplo excelente de cómo manejar tareas numéricas y conversiones en programación.
 
-#### 1. Comentarios de una sola línea
-Utilizan dos barras diagonales (//) y todo el texto que sigue a estas barras en la misma línea es tratado como un comentario. Son útiles para breves anotaciones o para desactivar rápidamente una línea de código durante las pruebas.
-
-Ejemplo:
-```java
-// Esto es un comentario de una sola línea
-int i = 10; // Este comentario sigue a una declaración
-```
-
-#### 2. Comentarios de varias líneas o comentarios en bloque
-Empiezan con /* y terminan con */. Todo el texto encerrado entre estos dos marcadores se considera un comentario, independientemente de las líneas que ocupe. 
-Son útiles para descripciones más extensas o para comentar bloques de código durante la depuración o el desarrollo.
-
-Ejemplo:
-```java
-/* Este es un comentario de varias líneas.
-   Se puede utilizar para explicar con más detalle el código que le sigue
-   o que está dentro de él. */
-int x = 100;
-```
-
-#### 3. Comentarios de documento o Javadoc
-Comienzan con /** y terminan con */. Estos comentarios son utilizados para generar documentación automática del código en formato HTML usando la herramienta Javadoc de Java. 
-Los comentarios Javadoc pueden incluir etiquetas que proporcionan información estructurada sobre el código, como parámetros de un método, valor de retorno, excepciones que puede lanzar, etc.
-
-Ejemplo:
-```java
-/**
- * Calcula la suma de dos enteros.
- * @param a el primer entero.
- * @param b el segundo entero.
- * @return la suma de 'a' y 'b'.
- */
-public int sumar(int a, int b) {
-    return a + b;
-}
-```
-
-El comentario que precede a la función convertirLibrasAKilogramos es un ejemplo de cómo utilizar comentarios de documentación en Java. 
-Estos comentarios están diseñados para ser procesados por la herramienta Javadoc de Java para generar documentación HTML automática del código. 
-Aquí se explica claramente:
-
-  - `Propósito de la función`: Describe qué hace la función —en este caso, convierte libras a kilogramos.
-  - `Parámetros`: Detalla los parámetros que acepta la función, incluyendo su tipo y significado.
-  - `Valor de retorno`: Describe lo que devuelve la función, permitiendo a otros desarrolladores entender rápidamente la funcionalidad sin necesidad de leer el código detalladamente.
-
-El uso de este tipo de comentarios es crucial para mantener el código accesible y comprensible, especialmente en entornos donde varios desarrolladores trabajan en el mismo proyecto o cuando se prepara el código para su uso o revisión por otros en el futuro.
