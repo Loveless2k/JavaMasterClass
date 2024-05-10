@@ -12,14 +12,29 @@ public class ConversorANato {
     }
 
     public static String convertirCaracterANato(char letra) {
-        return switch (letra) {
-            case 'A' -> "A - Alfa";
-            case 'B' -> "B - Bravo";
-            case 'C' -> "C - Charlie";
-            case 'D' -> "D - Delta";
-            case 'E' -> "E - Eco";
-            default -> "No encontrado";
-        };
+        String mensajeFinal;
+
+        switch (letra) {
+            case 'A':
+                mensajeFinal = "A - Alfa";
+                break;
+            case 'B':
+                mensajeFinal = "B - Bravo";
+                break;
+            case 'C':
+                mensajeFinal = "C - Charlie";
+                break;
+            case 'D':
+                mensajeFinal = "D - Delta";
+                break;
+            case 'E':
+                mensajeFinal = "E - Eco";
+                break;
+            default:
+                mensajeFinal = "No encontrado";
+                break;
+        }
+
+        return mensajeFinal;
     }
 }
-
