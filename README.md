@@ -8,7 +8,7 @@ Desarrolla un programa que convierta números enteros del 0 al 9 a sus equivalen
 
 1. **Definición de la Función de Conversión**:
    - Crea un método llamado `imprimirNumeroEnPalabra` que acepta un número entero como parámetro.
-   - Utiliza un `switch` expression para mapear cada número entero a su palabra correspondiente en español.
+   - Utiliza un `if-else`, `switch tradicional` o `switch` expression para mapear cada número entero a su palabra correspondiente en español.
    - En el caso `default` del `switch`, maneja cualquier número que no esté entre 0 y 9, asignando la palabra "OTRO".
 
 2. **Prueba de la Función**:
