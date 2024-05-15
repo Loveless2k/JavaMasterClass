@@ -1,67 +1,60 @@
 ## Problema
-Imagina que estás desarrollando un software para un juego de matemáticas donde los estudiantes deben encontrar números que son múltiplos de 3 y 5 dentro de un rango específico. Este programa ayuda a automatizar la verificación y suma de estos números.
+Imagina que estás desarrollando una aplicación para analizar datos numéricos y necesitas calcular la suma de todos los números impares dentro de un rango específico. Este programa automatiza la verificación y suma de estos números.
 
 ### Enunciado del Problema
-Desarrolla un programa en Java que encuentre y sume los primeros cinco números que sean múltiplos de 3 y 5 dentro del rango de 15 a 1000. El programa debe imprimir cada número que coincida y la suma total de estos números.
+Desarrolla un programa en Java que sume todos los números impares dentro de un rango dado. El programa debe verificar que los parámetros de entrada sean válidos y retornar -1 si no lo son.
 
 ### Paso a Paso para Resolver el Problema
 
-1. **Inicialización de Variables**:
-   - Declara e inicializa `contadorDeCoincidencias` a 0 para contar las coincidencias.
-   - Declara e inicializa `sumaDeCoincidencias` a 0 para almacenar la suma de los números que coinciden.
+1. **Inicialización del Método Principal**:
+    - Utiliza el método `main` para probar diferentes rangos y verificar el correcto funcionamiento del programa.
 
-2. **Bucle `for` para Iterar sobre el Rango**:
-   - Usa un bucle `for` para iterar desde 15 hasta 1000.
+2. **Definición del Método `esImpar`**:
+    - Verifica si un número es impar. Un número es impar si es mayor que 0 y no divisible por 2.
 
-3. **Verificación de Múltiplos de 3 y 5**:
-   - Dentro del bucle, usa una condición `if` para verificar si el número actual es múltiplo de 3 y 5.
-
-4. **Actualización de Contador y Suma**:
-   - Si la condición es verdadera, imprime el número, incrementa el `contadorDeCoincidencias` y agrega el número a `sumaDeCoincidencias`.
-
-5. **Terminación del Bucle**:
-   - Si se han encontrado 5 coincidencias, usa `break` para salir del bucle.
-
-6. **Impresión del Resultado Final**:
-   - Después del bucle, imprime la suma total de las coincidencias.
+3. **Definición del Método `sumarImpares`**:
+    - Verifica si los parámetros de entrada son válidos (es decir, `inicio` y `fin` son no negativos y `inicio` es menor o igual a `fin`). Si no son válidos, retorna -1.
+    - Inicializa una variable `sumaDeImpares` a 0.
+    - Usa un bucle `for` para iterar desde `inicio` hasta `fin`.
+    - Dentro del bucle, verifica si el número es impar usando el método `esImpar` y, si es así, lo suma a `sumaDeImpares`.
+    - Retorna la suma de los números impares encontrados en el rango.
 
 ### Solución propuesta
 
 1. **Método `main`**:
-   - **Declaración de Variables**:
-     ```java
-     int contadorDeCoincidencias = 0;
-     int sumaDeCoincidencias = 0;
-     ```
-     Se declaran e inicializan las variables `contadorDeCoincidencias` y `sumaDeCoincidencias` a 0.
+    - Prueba el método `sumarImpares` con varios rangos para asegurar que el programa funcione correctamente con diferentes entradas.
 
-   - **Bucle `for` para Iterar sobre el Rango**:
-     ```java
-     for (int numero = 15; numero <= 1000; numero++) {
-     ```
-     Este bucle itera sobre los números del 15 al 1000.
+2. **Método `esImpar`**:
+    - **Verificación de Imparidad**:
+      ```java
+      return numero > 0 && numero % 2 != 0;
+      ```
+      El método retorna `true` si el número es mayor que 0 y no divisible por 2, indicando que es impar.
 
-   - **Verificación de Múltiplos de 3 y 5**:
-     ```java
-     if (numero % 3 == 0 && numero % 5 == 0) {
-         System.out.println("Encontrada una coincidencia: " + numero);
-         sumaDeCoincidencias += numero;
-         contadorDeCoincidencias++;
-     ```
-     Dentro del bucle, se verifica si el número es múltiplo de 3 y 5. Si es así, se imprime el número, se suma a `sumaDeCoincidencias` y se incrementa `contadorDeCoincidencias`.
+3. **Método `sumarImpares`**:
+    - **Verificación de Parámetros de Entrada**:
+      ```java
+      if (inicio < 0 || fin < 0 || inicio > fin) {
+          return -1;
+      }
+      ```
+      Verifica que `inicio` y `fin` sean no negativos y que `inicio` sea menor o igual a `fin`. Si no es así, retorna -1.
 
-   - **Terminación del Bucle**:
-     ```java
-     if (contadorDeCoincidencias == 5) {
-         break;
-     }
-     ```
-     Si se han encontrado 5 coincidencias, se utiliza `break` para salir del bucle.
+    - **Inicialización y Bucle `for`**:
+      ```java
+      int sumaDeImpares = 0;
+      for (int i = inicio; i <= fin; i++) {
+          if (esImpar(i)) {
+              sumaDeImpares += i;
+          }
+      }
+      ```
+      Inicializa `sumaDeImpares` a 0. Usa un bucle `for` para iterar desde `inicio` hasta `fin`. Dentro del bucle, verifica si el número es impar y, si es así, lo suma a `sumaDeImpares`.
 
-   - **Impresión del Resultado Final**:
-     ```java
-     System.out.println("Suma de las coincidencias: " + sumaDeCoincidencias);
-     ```
-     Después del bucle, se imprime la suma total de las coincidencias.
+    - **Retorno de la Suma**:
+      ```java
+      return sumaDeImpares;
+      ```
+      Retorna la suma de los números impares encontrados en el rango.
 
-Este código es eficiente y claro, asegurando que se encuentre y sume exactamente cinco números múltiplos de 3 y 5 dentro del rango especificado.
+Este código es eficiente y claro, asegurando que se sumen correctamente los números impares dentro del rango especificado y manejando adecuadamente las entradas no válidas.
