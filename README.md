@@ -1,186 +1,180 @@
-### El Condicional `while` en Java
+### Descomposición de Números con `%` y `/` en Java
 
-El bucle `while` es una estructura de control en Java que permite ejecutar un bloque de código repetidamente mientras una condición especificada sea verdadera. Es útil cuando no se conoce de antemano el número exacto de iteraciones que se necesitan.
+La descomposición de números en sus dígitos componentes se puede lograr utilizando los operadores de módulo (`%`) y división (`/`). Estos operadores son fundamentales para entender cómo manipular y analizar los números en sus partes individuales. A continuación, se explica detalladamente cómo funcionan estos operadores y cómo se pueden utilizar para descomponer números.
 
-### Sintaxis del `while`
+### Operador de Módulo (`%`)
 
-La sintaxis básica del bucle `while` es:
+El operador de módulo (`%`) se utiliza para obtener el residuo de una división entre dos números. En el contexto de la descomposición de números, el operador de módulo es útil para obtener el último dígito de un número.
 
+**Ejemplo**:
 ```java
-while (condición) {
-    // Código a ejecutar en cada iteración
-}
+int numero = 12345;
+int ultimoDigito = numero % 10; // ultimoDigito será 5
 ```
+En este ejemplo, `12345 % 10` devuelve `5`, que es el último dígito del número `12345`.
 
-#### Componentes del `while`
+### Operador de División (`/`)
 
-1. **Condición**: Una expresión booleana que se evalúa antes de cada iteración. Si la condición es `true`, se ejecuta el bloque de código dentro del bucle. Si es `false`, el bucle termina.
-2. **Bloque de Código**: El conjunto de instrucciones que se ejecuta repetidamente mientras la condición sea verdadera.
+El operador de división (`/`) se utiliza para dividir dos números y devolver el cociente entero de la división. En el contexto de la descomposición de números, el operador de división es útil para eliminar el último dígito de un número.
 
-### Ejemplo Básico
-
-Aquí hay un ejemplo básico que utiliza un bucle `while` para imprimir los números del 1 al 5:
-
+**Ejemplo**:
 ```java
-int contador = 1;
-while (contador <= 5) {
-    System.out.println("El valor de contador es: " + contador);
-    contador++;
-}
+int numero = 12345;
+numero = numero / 10; // numero será 1234
 ```
+En este ejemplo, `12345 / 10` devuelve `1234`, que es el resultado de eliminar el último dígito del número `12345`.
 
-#### Explicación del Ejemplo
+### Combinación de `%` y `/` para Descomponer Números
 
-1. **Inicialización**: `int contador = 1;` inicializa la variable `contador` con el valor 1.
-2. **Condición**: `contador <= 5;` el bucle continuará ejecutándose mientras `contador` sea menor o igual a 5.
-3. **Incremento**: `contador++;` incrementa el valor de `contador` en 1 después de cada iteración.
+Para descomponer un número en sus dígitos individuales, se puede utilizar una combinación de los operadores `%` y `/`. La idea es iterar a través del número, obteniendo el último dígito con `%` y eliminándolo con `/`.
 
-### Ejemplo Avanzado: Leer Entrada del Usuario
-
-Aquí hay un ejemplo más avanzado que utiliza un bucle `while` para leer entradas del usuario hasta que el usuario ingrese un número negativo:
-
+**Ejemplo Completo**:
 ```java
-import java.util.Scanner;
+public class DescomposicionDeNumeros {
 
-public class LeerEntradas {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        int numero;
+        int numero = 12345;
+        descomponerNumero(numero);
+    }
 
-        System.out.println("Ingresa un número (negativo para salir): ");
-        numero = scanner.nextInt();
-
-        while (numero >= 0) {
-            System.out.println("Ingresaste: " + numero);
-            System.out.println("Ingresa otro número (negativo para salir): ");
-            numero = scanner.nextInt();
+    public static void descomponerNumero(int numero) {
+        while (numero > 0) {
+            int digito = numero % 10; // Obtiene el último dígito
+            System.out.println("Dígito: " + digito);
+            numero = numero / 10; // Elimina el último dígito
         }
-
-        System.out.println("Programa terminado.");
-        scanner.close();
     }
 }
 ```
 
 #### Explicación del Ejemplo
 
-1. **Inicialización**: Se declara la variable `numero` y se inicializa con el valor ingresado por el usuario.
-2. **Condición**: `numero >= 0;` el bucle continuará ejecutándose mientras `numero` sea mayor o igual a 0.
-3. **Leer Entrada**: Dentro del bucle, se lee otra entrada del usuario para actualizar el valor de `numero`.
+1. **Inicialización**: El número `12345` es el número a descomponer.
+2. **Bucle `while`**: El bucle continúa mientras `numero` sea mayor que 0.
+3. **Obtener el Último Dígito**:
+   ```java
+   int digito = numero % 10;
+   ```
+   Aquí, `digito` obtiene el valor del último dígito de `numero`.
+4. **Imprimir el Dígito**:
+   ```java
+   System.out.println("Dígito: " + digito);
+   ```
+   El dígito obtenido se imprime en la consola.
+5. **Eliminar el Último Dígito**:
+   ```java
+   numero = numero / 10;
+   ```
+   Aquí, `numero` se actualiza eliminando su último dígito.
+
+### Ejemplo Aplicado: Suma de Dígitos
+
+A continuación, se muestra un ejemplo práctico de cómo usar `%` y `/` para sumar los dígitos de un número.
+
+```java
+public class SumaDeDigitos {
+
+    public static void main(String[] args) {
+        int numero = 12345;
+        int suma = sumarDigitos(numero);
+        System.out.println("La suma de los dígitos de " + numero + " es " + suma);
+    }
+
+    public static int sumarDigitos(int numero) {
+        int sumaDeDigitos = 0;
+        while (numero > 0) {
+            int digito = numero % 10; // Obtiene el último dígito
+            sumaDeDigitos += digito; // Suma el dígito al total
+            numero = numero / 10; // Elimina el último dígito
+        }
+        return sumaDeDigitos;
+    }
+}
+```
+
+#### Explicación del Ejemplo
+
+1. **Método `main`**:
+    - Se inicializa `numero` con `12345`.
+    - Se llama al método `sumarDigitos` y se imprime el resultado.
+
+2. **Método `sumarDigitos`**:
+    - **Inicialización**:
+      ```java
+      int sumaDeDigitos = 0;
+      ```
+      Se inicializa `sumaDeDigitos` a 0 para almacenar la suma de los dígitos.
+    - **Bucle `while`**:
+      ```java
+      while (numero > 0) {
+          int digito = numero % 10; // Obtiene el último dígito
+          sumaDeDigitos += digito; // Suma el dígito al total
+          numero = numero / 10; // Elimina el último dígito
+      }
+      ```
+      Este bucle itera mientras `numero` sea mayor que 0, obteniendo y sumando el último dígito en cada iteración.
+    - **Retorno de la Suma**:
+      ```java
+      return sumaDeDigitos;
+      ```
+      Finalmente, el método retorna la suma de los dígitos calculada.
 
 ### Buenas Prácticas y Recomendaciones
 
-1. **Evitar Bucles Infinitos**: Asegúrate de que la condición del `while` eventualmente se convierta en `false`. De lo contrario, el bucle seguirá ejecutándose indefinidamente.
-
-2. **Condiciones Claras y Concretas**: La condición del bucle debe ser clara y fácil de entender. Evita condiciones complejas que puedan ser difíciles de leer y depurar.
-
-3. **Actualizar Variables de Control**: Asegúrate de que las variables de control (como `contador` en el primer ejemplo) se actualicen correctamente dentro del bucle para evitar bucles infinitos.
-
-4. **Uso de `break` y `continue`**: Utiliza `break` para salir del bucle antes de que la condición se vuelva `false`, si es necesario. Usa `continue` para saltar a la siguiente iteración del bucle sin terminar la actual. Usa estas declaraciones con moderación para mantener la claridad del código.
-
-### Ejemplo con `break` y `continue`
-
-```java
-int numero = 0;
-
-while (numero < 10) {
-    numero++;
-    if (numero % 2 == 0) {
-        continue; // Salta a la siguiente iteración si el número es par
-    }
-    if (numero > 7) {
-        break; // Termina el bucle si el número es mayor que 7
-    }
-    System.out.println("Número impar menor o igual a 7: " + numero);
-}
-```
-
-#### Explicación del Ejemplo
-
-- **`continue`**: Si `numero` es par, la sentencia `continue` hace que el control del bucle salte inmediatamente a la siguiente iteración, omitiendo el resto del bloque de código para esa iteración.
-- **`break`**: Si `numero` es mayor que 7, la sentencia `break` termina el bucle inmediatamente, sin evaluar más iteraciones.
+1. **Validación de Entrada**: Asegúrate de validar las entradas para evitar errores o resultados inesperados. Por ejemplo, maneja los casos donde el número es negativo.
+2. **Comentarios Claros**: Usa comentarios claros para explicar el propósito de cada paso, especialmente si otros desarrolladores trabajarán con tu código.
+3. **Manejo de Casos Especiales**: Considera y maneja casos especiales, como números muy grandes o casos límite.
 
 ### Conclusión
 
-El bucle `while` es una herramienta poderosa y flexible en Java, adecuada para situaciones donde el número de iteraciones no está predefinido. Seguir las buenas prácticas y recomendaciones mencionadas puede ayudar a escribir código más claro, eficiente y mantenible, evitando errores comunes como bucles infinitos.
+El uso combinado de los operadores `%` y `/` es una técnica poderosa y eficiente para descomponer números en sus dígitos componentes en Java. Entender y aplicar estos operadores correctamente permite realizar análisis y manipulaciones precisas sobre los números, lo que es fundamental en muchas aplicaciones de software.
 
 ## Problema
-Imagina que estás trabajando en un sistema de análisis numérico donde necesitas identificar y contar números pares dentro de un rango específico y detener el conteo después de encontrar cinco números pares. Este programa automatiza esta tarea y proporciona una forma eficiente de realizar este análisis.
+Imagina que estás desarrollando una aplicación que necesita analizar números y realizar operaciones matemáticas básicas sobre ellos. Este programa podría ser útil en una calculadora, un software de contabilidad o cualquier aplicación que necesite manipular y analizar los componentes individuales de los números.
 
 ### Enunciado del Problema
-Desarrolla un programa en Java que recorra los números entre dos valores dados, identificando y contando los números pares hasta encontrar cinco de ellos. El programa también debe contar y mostrar el número total de números impares encontrados durante la iteración.
+Desarrolla un programa en Java que calcule la suma de los dígitos de un número entero positivo. Si el número es negativo, el programa debe retornar -1.
 
 ### Paso a Paso para Resolver el Problema
 
-1. **Inicialización de Variables**:
-   - Declara e inicializa `numeroInicio` y `numeroFin` con los valores del rango.
-   - Declara e inicializa `contadorPares` a 0 para contar los números pares encontrados.
-   - Declara e inicializa `contadorImpares` a 0 para contar los números impares encontrados.
+1. **Inicialización del Método Principal**:
+    - Utiliza el método `main` para probar el método `sumarDigitos` con varios números.
 
-2. **Bucle `while` para Iterar sobre el Rango**:
-   - Usa un bucle `while` para iterar desde `numeroInicio` hasta `numeroFin`.
-   - La condición del bucle también verifica si se han encontrado menos de 5 números pares (`contadorPares < 5`).
-
-3. **Verificación de Números Pares**:
-   - Dentro del bucle, usa una condición `if` para verificar si el número actual es par utilizando el método `esNumeroPar`.
-
-4. **Actualización de Contadores**:
-   - Si el número es par, incrementa `contadorPares` y muestra el número.
-   - Si el número no es par, incrementa `contadorImpares`.
-
-5. **Incremento del Número de Inicio**:
-   - Incrementa `numeroInicio` en cada iteración para avanzar al siguiente número.
-
-6. **Impresión de Resultados Finales**:
-   - Después de que el bucle termina, imprime el número total de números pares e impares encontrados.
+2. **Definición del Método `sumarDigitos`**:
+    - Verifica si el número es negativo. Si es así, retorna -1.
+    - Inicializa una variable `sumaDeDigitos` a 0.
+    - Usa un bucle `while` para iterar mientras el número sea mayor que 0.
+    - Dentro del bucle, suma el último dígito del número a `sumaDeDigitos` y luego remueve el último dígito del número.
+    - Retorna la suma de los dígitos.
 
 ### Solución propuesta
 
 1. **Método `main`**:
-   - **Declaración de Variables**:
-     ```java
-     int numeroInicio = 5;
-     int numeroFin = 20;
-     int contadorPares = 0;
-     int contadorImpares = 0;
-     ```
-     Se declaran e inicializan las variables `numeroInicio`, `numeroFin`, `contadorPares` y `contadorImpares`.
+    - Prueba el método `sumarDigitos` con varios números para asegurar que el programa funcione correctamente con diferentes entradas.
 
-   - **Bucle `while` para Iterar sobre el Rango**:
-     ```java
-     while (numeroInicio <= numeroFin && contadorPares < 5) {
-     ```
-     El bucle `while` itera desde `numeroInicio` hasta `numeroFin` y continúa mientras `contadorPares` sea menor que 5.
+2. **Método `sumarDigitos`**:
+    - **Verificación de Número Negativo**:
+      ```java
+      if (numero < 0) {
+          return -1;
+      }
+      ```
+      El método verifica si el número es negativo. Si es así, retorna -1.
 
-   - **Verificación de Números Pares**:
-     ```java
-     if (esNumeroPar(numeroInicio)) {
-         System.out.println("Número par encontrado: " + numeroInicio);
-         contadorPares++;
-     } else {
-         contadorImpares++;
-     }
-     ```
-     Dentro del bucle, se verifica si `numeroInicio` es par usando el método `esNumeroPar`. Si es par, se incrementa `contadorPares` y se muestra el número. Si no es par, se incrementa `contadorImpares`.
+    - **Inicialización y Bucle `while`**:
+      ```java
+      int sumaDeDigitos = 0;
+      while (numero > 0) {
+          sumaDeDigitos += numero % 10;
+          numero /= 10;
+      }
+      ```
+      Inicializa `sumaDeDigitos` a 0. Usa un bucle `while` para iterar mientras el número sea mayor que 0. Dentro del bucle, suma el último dígito del número a `sumaDeDigitos` y luego remueve el último dígito del número.
 
-   - **Incremento del Número de Inicio**:
-     ```java
-     numeroInicio++;
-     ```
-     Después de cada iteración, se incrementa `numeroInicio`.
+    - **Retorno de la Suma**:
+      ```java
+      return sumaDeDigitos;
+      ```
+      Retorna la suma de los dígitos calculada.
 
-   - **Impresión de Resultados Finales**:
-     ```java
-     System.out.println("Total de números pares encontrados: " + contadorPares);
-     System.out.println("Total de números impares encontrados: " + contadorImpares);
-     ```
-     Después de que el bucle termina, se imprime el número total de números pares e impares encontrados.
-
-2. **Método `esNumeroPar`**:
-   - **Verificación de Paridad**:
-     ```java
-     return numero % 2 == 0;
-     ```
-     Este método verifica si un número es par devolviendo `true` si el residuo de `numero` dividido por 2 es 0.
-
-Este código es eficiente y claro, asegurando que se encuentren y cuenten correctamente los números pares e impares dentro del rango especificado y deteniéndose después de encontrar cinco números pares.
+Este código es eficiente y claro, asegurando que se calculen correctamente las sumas de los dígitos de números enteros positivos y manejando adecuadamente las entradas negativas.
