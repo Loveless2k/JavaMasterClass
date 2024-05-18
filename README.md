@@ -1,61 +1,64 @@
 ## Problema
-Imagina que estás desarrollando una aplicación que necesita verificar si un número es un palíndromo, por ejemplo, en un sistema de control de calidad de números de serie o en una aplicación educativa que enseña conceptos matemáticos. Este programa ayuda a automatizar la verificación de palíndromos de manera eficiente.
+Imagina que estás desarrollando una aplicación de análisis de números donde necesitas sumar el primer y el último dígito de un número dado. Este programa puede ser útil en un sistema de validación de datos o en una aplicación educativa para enseñar conceptos matemáticos.
 
 ### Enunciado del Problema
-Desarrolla un programa en Java que verifique si un número entero es un palíndromo. Un número palíndromo es aquel que se lee igual de izquierda a derecha que de derecha a izquierda. El programa debe manejar números negativos apropiadamente.
+Desarrolla un programa en Java que calcule la suma del primer y último dígito de un número entero positivo. Si el número es negativo, el programa debe retornar -1. Si el número tiene un solo dígito, debe duplicar el valor de ese dígito.
 
 ### Paso a Paso para Resolver el Problema
 
 1. **Inicialización del Método Principal**:
-   - Utiliza el método `main` para probar el método `esPalindromo` con varios números.
+   - Utiliza el método `main` para probar el método `sumarPrimerYUltimoDigito` con varios números.
 
-2. **Definición del Método `esPalindromo`**:
-   - Verifica si el número es negativo. Si es así, retorna `false` directamente.
-   - Guarda el valor original del número para comparación posterior.
-   - Inicializa una variable `numeroInvertido` a 0 para almacenar el número invertido.
-   - Usa un bucle `while` para invertir el número:
-      - Obtén el último dígito del número usando el operador `%`.
-      - Añade el último dígito a `numeroInvertido` multiplicándolo por 10 y sumando el dígito.
-      - Elimina el último dígito del número usando el operador `/`.
-   - Compara el número original con el número invertido y retorna `true` si son iguales, de lo contrario, retorna `false`.
+2. **Definición del Método `sumarPrimerYUltimoDigito`**:
+   - Verifica si el número es negativo. Si es así, retorna -1.
+   - Si el número tiene un solo dígito (menor que 10), duplica el valor del número y retorna el resultado.
+   - Obtiene el último dígito del número usando el operador `%`.
+   - Usa un bucle `while` para eliminar los dígitos hasta que solo quede el primer dígito.
+   - Suma el primer y último dígito y retorna el resultado.
 
 ### Solución propuesta
 
 1. **Método `main`**:
-   - Prueba el método `esPalindromo` con varios números para asegurar que el programa funcione correctamente con diferentes entradas.
+   - Prueba el método `sumarPrimerYUltimoDigito` con varios números para asegurar que el programa funcione correctamente con diferentes entradas.
 
-2. **Método `esPalindromo`**:
+2. **Método `sumarPrimerYUltimoDigito`**:
    - **Verificación de Número Negativo**:
      ```java
      if (numero < 0) {
-         return false;
+         return -1; // Retorna -1 para números negativos
      }
      ```
-     Verifica si el número es negativo. Si es así, retorna `false` directamente.
+     Verifica si el número es negativo. Si es así, retorna -1.
 
-   - **Inicialización de Variables**:
+   - **Manejo de Números de un Solo Dígito**:
      ```java
-     int numeroOriginal = numero;
-     int numeroInvertido = 0;
-     ```
-     Guarda el valor original del número en `numeroOriginal` y inicializa `numeroInvertido` a 0.
-
-   - **Bucle `while` para Invertir el Número**:
-     ```java
-     while (numero > 0) {
-         int ultimoDigito = numero % 10;
-         numeroInvertido = numeroInvertido * 10 + ultimoDigito;
-         numero /= 10;
+     if (numero < 10) {
+         return numero * 2; // Si el número tiene un solo dígito, se duplica su valor
      }
      ```
-     Usa un bucle `while` para invertir el número. En cada iteración, obtiene el último dígito, lo añade a `numeroInvertido` y elimina el último dígito del número original.
+     Si el número es menor que 10, se duplica su valor y se retorna el resultado.
 
-   - **Comparación del Número Original con el Número Invertido**:
+   - **Obtención del Último Dígito**:
      ```java
-     return numeroOriginal == numeroInvertido;
+     int ultimoDigito = numero % 10;
      ```
-     Compara el número original con el número invertido. Si son iguales, el número es un palíndromo y retorna `true`; de lo contrario, retorna `false`.
+     Obtiene el último dígito del número usando el operador `%`.
+
+   - **Eliminación de Dígitos hasta el Primer Dígito**:
+     ```java
+     while (numero >= 10) {
+         numero /= 10; // Elimina el último dígito en cada iteración
+     }
+     int primerDigito = numero; // Ahora, 'numero' contiene el primer dígito
+     ```
+     Usa un bucle `while` para eliminar los dígitos del número hasta que solo quede el primer dígito.
+
+   - **Suma del Primer y Último Dígito**:
+     ```java
+     return primerDigito + ultimoDigito;
+     ```
+     Suma el primer y último dígito y retorna el resultado.
 
 ### Conclusión
 
-Este código es eficiente y claro, asegurando que se verifiquen correctamente los números palíndromos, incluyendo la adecuada gestión de números negativos. La estructura del programa facilita su comprensión y mantenimiento.
+Este código es eficiente y claro, asegurando que se calculen correctamente las sumas del primer y último dígito de números enteros positivos y manejando adecuadamente las entradas negativas y los números de un solo dígito. La estructura del programa facilita su comprensión y mantenimiento.
