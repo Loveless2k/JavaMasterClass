@@ -1,71 +1,59 @@
 ## Problema
-Imagina que estás desarrollando una aplicación para verificar la validez de números de identificación que deben compartir al menos un dígito para ser considerados válidos. Este programa podría ser útil en sistemas de validación de datos, análisis de números, o aplicaciones educativas que enseñan conceptos de programación y análisis numérico.
+Imagina que estás desarrollando un sistema de validación de números donde los números válidos deben compartir al menos el mismo último dígito. Este programa puede ser útil en sistemas de validación de datos, análisis de números o aplicaciones educativas que enseñan conceptos de programación y análisis numérico.
 
 ### Enunciado del Problema
-Desarrolla un programa en Java que verifique si dos números de dos dígitos tienen al menos un dígito en común. Si alguno de los números no es de dos dígitos, el programa debe retornar `false`.
+Desarrolla un programa en Java que verifique si al menos dos de tres números enteros comparten el mismo último dígito. Los números deben estar en el rango de 10 a 1000, inclusive. Si algún número no está en este rango, el programa debe retornar `false`.
 
 ### Paso a Paso para Resolver el Problema
 
 1. **Inicialización del Método Principal**:
-   - Utiliza el método `main` para probar el método `tieneDigitoCompartido` con varios pares de números.
+   - Utiliza el método `main` para probar el método `tienenMismoUltimoDigito` con varios conjuntos de tres números.
 
-2. **Definición del Método `tieneDigitoCompartido`**:
-   - Verifica si alguno de los números no es de dos dígitos. Si es así, retorna `false`.
-   - Conserva el valor original de `segundoNumero` para restablecerlo después de cada iteración del primer bucle.
-   - Usa un bucle `while` para iterar a través de los dígitos del `primerNumero`:
-      - Obtén el último dígito de `primerNumero` usando el operador `%`.
-      - Restablece `segundoNumero` a su valor original.
-      - Usa un bucle `while` interno para iterar a través de los dígitos de `segundoNumero`:
-         - Obtén el último dígito de `segundoNumero` usando el operador `%`.
-         - Verifica si los dígitos actuales de `primerNumero` y `segundoNumero` son iguales. Si es así, retorna `true`.
-         - Elimina el último dígito de `segundoNumero` usando el operador `/`.
-      - Elimina el último dígito de `primerNumero` usando el operador `/`.
-   - Si no se encuentra ningún dígito compartido, retorna `false`.
+2. **Definición del Método `esValido`**:
+   - Verifica si un número está en el rango de 10 a 1000, inclusive. Si es así, retorna `true`; de lo contrario, retorna `false`.
+
+3. **Definición del Método `tienenMismoUltimoDigito`**:
+   - Verifica si cada uno de los tres números es válido usando el método `esValido`. Si alguno no es válido, retorna `false`.
+   - Obtiene el último dígito de cada número usando el operador `%`.
+   - Compara los últimos dígitos y retorna `true` si al menos dos de ellos son iguales; de lo contrario, retorna `false`.
 
 ### Solución propuesta
 
 1. **Método `main`**:
-   - Prueba el método `tieneDigitoCompartido` con varios pares de números para asegurar que el programa funcione correctamente con diferentes entradas.
+   - Prueba el método `tienenMismoUltimoDigito` con varios conjuntos de tres números para asegurar que el programa funcione correctamente con diferentes entradas.
 
-2. **Método `tieneDigitoCompartido`**:
-   - **Verificación de Números de Dos Dígitos**:
+2. **Método `esValido`**:
+   - **Verificación de Rango de Número**:
      ```java
-     if ((primerNumero > 99 || primerNumero < 10) ||
-             segundoNumero > 99 || segundoNumero < 10) {
+     return (numero >= 10 && numero <= 1000);
+     ```
+     Este método verifica si un número está en el rango de 10 a 1000, inclusive.
+
+3. **Método `tienenMismoUltimoDigito`**:
+   - **Verificación de Números Válidos**:
+     ```java
+     if (!esValido(primerNumero) || !esValido(segundoNumero) || !esValido(tercerNumero)) {
          return false;
      }
      ```
-     Verifica si alguno de los números no es de dos dígitos. Si es así, retorna `false`.
+     Verifica si cada uno de los tres números es válido usando el método `esValido`. Si alguno no es válido, retorna `false`.
 
-   - **Inicialización y Bucle `while` Externo**:
+   - **Obtención de los Últimos Dígitos**:
      ```java
-     int segundoNumeroOriginal = segundoNumero;
-
-     while (primerNumero > 0) {
-         int digitoActualPrimerNumero = primerNumero % 10;
-         segundoNumero = segundoNumeroOriginal;
+     int ultimoDigitoPrimero = primerNumero % 10;
+     int ultimoDigitoSegundo = segundoNumero % 10;
+     int ultimoDigitoTercero = tercerNumero % 10;
      ```
-     Conserva el valor original de `segundoNumero` y usa un bucle `while` para iterar a través de los dígitos de `primerNumero`.
+     Obtiene el último dígito de cada número usando el operador `%`.
 
-   - **Bucle `while` Interno**:
+   - **Comparación de los Últimos Dígitos**:
      ```java
-     while (segundoNumero > 0) {
-         int digitoActualSegundoNumero = segundoNumero % 10;
-         if (digitoActualPrimerNumero == digitoActualSegundoNumero) {
-             return true;
-         }
-         segundoNumero /= 10;
-     }
-     primerNumero /= 10;
+     return (ultimoDigitoPrimero == ultimoDigitoSegundo) ||
+             (ultimoDigitoPrimero == ultimoDigitoTercero) ||
+             (ultimoDigitoSegundo == ultimoDigitoTercero);
      ```
-     Usa un bucle `while` interno para iterar a través de los dígitos de `segundoNumero`. Verifica si los dígitos actuales de `primerNumero` y `segundoNumero` son iguales. Si es así, retorna `true`.
-
-   - **Retorno `false` si No se Encuentra un Dígito Compartido**:
-     ```java
-     return false;
-     ```
-     Si no se encuentra ningún dígito compartido después de iterar a través de todos los dígitos, retorna `false`.
+     Compara los últimos dígitos y retorna `true` si al menos dos de ellos son iguales; de lo contrario, retorna `false`.
 
 ### Conclusión
 
-Este código es eficiente y claro, asegurando que se verifique correctamente si dos números de dos dígitos tienen al menos un dígito en común. La estructura del programa facilita su comprensión y mantenimiento.
+Este código es eficiente y claro, asegurando que se verifique correctamente si al menos dos de tres números comparten el mismo último dígito. La estructura del programa facilita su comprensión y mantenimiento.
