@@ -1,64 +1,116 @@
 ## Problema
-Imagina que estás desarrollando una aplicación educativa para enseñar conceptos matemáticos. Un número perfecto es un número entero positivo que es igual a la suma de sus divisores propios positivos (excluyendo el propio número). Este programa puede ser útil en una aplicación de enseñanza de matemáticas para mostrar ejemplos de números perfectos.
+Imagina que estás desarrollando una aplicación que necesita convertir números en su representación en palabras, por ejemplo, en una aplicación bancaria que convierte montos en letras para cheques, o en una aplicación educativa para enseñar conceptos matemáticos. Este programa es útil para convertir cualquier número entero positivo en palabras.
 
 ### Enunciado del Problema
-
-Desarrolla un programa en Java que determine si un número entero positivo es un número perfecto. Un número perfecto es un número entero positivo que es igual a la suma de sus divisores propios positivos. Si el número es menor que 1, el programa debe retornar `false`.
+Desarrolla un programa en Java que convierta un número entero positivo en su representación en palabras. Si el número es negativo, el programa debe imprimir "Valor inválido".
 
 ### Paso a Paso para Resolver el Problema
 
 1. **Inicialización del Método Principal**:
-    - Utiliza el método `main` para probar el método `esNumeroPerfecto` con varios números.
+   - Utiliza el método `main` para probar los métodos `obtenerCuentaDigitos`, `reverso` y `numeroAPalabras` con varios números.
 
-2. **Definición del Método `esNumeroPerfecto`**:
-    - Verifica si el número es menor que 1. Si es así, retorna `false`.
-    - Inicializa una variable `sumaDivisoresPropiosPositivos` a 0 para almacenar la suma de los divisores propios positivos.
-    - Determina el límite de iteración como la mitad del número (`numero / 2`), ya que ningún divisor propio positivo puede ser mayor que la mitad del número.
-    - Usa un bucle `for` para iterar desde 1 hasta el límite:
-        - Si el número actual (`i`) es un divisor del número dado (`numero % i == 0`), agréguelo a `sumaDivisoresPropiosPositivos`.
-    - Compara la suma de los divisores propios positivos con el número original. Si son iguales, retorna `true`; de lo contrario, retorna `false`.
+2. **Definición del Método `obtenerCuentaDigitos`**:
+   - Verifica si el número es negativo. Si es así, retorna -1.
+   - Si el número es 0, retorna 1.
+   - Usa un bucle `while` para contar los dígitos del número.
+
+3. **Definición del Método `reverso`**:
+   - Inicializa una variable `numeroReverso` a 0 para almacenar el número invertido.
+   - Usa un bucle `while` para invertir el número.
+
+4. **Definición del Método `numeroAPalabras`**:
+   - Verifica si el número es negativo. Si es así, imprime "Valor inválido".
+   - Si el número es 0, imprime "CERO".
+   - Invierte el número usando el método `reverso`.
+   - Usa un bucle `while` para convertir cada dígito del número invertido en su representación en palabras.
+   - Usa un bucle `for` para agregar ceros necesarios al final de la conversión si el número original tiene más dígitos que el número invertido.
 
 ### Solución propuesta
 
-Determina si un número entero positivo es un número perfecto, manejando adecuadamente los casos donde el número es menor que 1.
-
-### Explicación de la solución
-
 1. **Método `main`**:
-    - Prueba el método `esNumeroPerfecto` con varios números para asegurar que el programa funcione correctamente con diferentes entradas.
+   - Prueba los métodos `obtenerCuentaDigitos`, `reverso` y `numeroAPalabras` con varios números para asegurar que el programa funcione correctamente con diferentes entradas.
 
-2. **Método `esNumeroPerfecto`**:
-    - **Verificación de Número Válido**:
-      ```java
-      if (numero < 1) {
-          return false;
-      }
-      ```
-      Verifica si el número es menor que 1. Si es así, retorna `false`.
+2. **Método `obtenerCuentaDigitos`**:
+   - **Verificación de Número Válido**:
+     ```java
+     if (numero < 0) {
+         return -1;
+     }
+     ```
+     Verifica si el número es negativo. Si es así, retorna -1.
 
-    - **Inicialización de Variables y Cálculo del Límite**:
-      ```java
-      int sumaDivisoresPropiosPositivos = 0;
-      int limite = numero / 2;
-      ```
-      Inicializa `sumaDivisoresPropiosPositivos` a 0 y determina el límite de iteración como la mitad del número.
+   - **Conteo de Dígitos**:
+     ```java
+     if (numero == 0) {
+         return 1;
+     }
 
-    - **Bucle `for` para Sumar Divisores Propios Positivos**:
-      ```java
-      for (int i = 1; i <= limite; i++) {
-          if (numero % i == 0) {
-              sumaDivisoresPropiosPositivos += i;
-          }
-      }
-      ```
-      Usa un bucle `for` para iterar desde 1 hasta el límite. Si `i` es un divisor del número (`numero % i == 0`), agréguelo a `sumaDivisoresPropiosPositivos`.
+     int cuentaDigitos = 0;
+     while (numero != 0) {
+         cuentaDigitos++;
+         numero /= 10;
+     }
 
-    - **Comparación y Retorno del Resultado**:
-      ```java
-      return numero == sumaDivisoresPropiosPositivos;
-      ```
-      Compara la suma de los divisores propios positivos con el número original. Si son iguales, retorna `true`; de lo contrario, retorna `false`.
+     return cuentaDigitos;
+     ```
+     Si el número es 0, retorna 1. Usa un bucle `while` para contar los dígitos del número.
+
+3. **Método `reverso`**:
+   - **Inversión del Número**:
+     ```java
+     int numeroReverso = 0;
+     while (numero != 0) {
+         int digito = numero % 10;
+         numeroReverso = numeroReverso * 10 + digito;
+         numero /= 10;
+     }
+
+     return numeroReverso;
+     ```
+     Inicializa `numeroReverso` a 0 y usa un bucle `while` para invertir el número.
+
+4. **Método `numeroAPalabras`**:
+   - **Verificación de Número Válido y Cero**:
+     ```java
+     if (numero < 0) {
+         System.out.println("Valor inválido");
+     } else if (numero == 0) {
+         System.out.println("CERO");
+     } else {
+         ...
+     }
+     ```
+     Verifica si el número es negativo o cero. Si es negativo, imprime "Valor inválido". Si es cero, imprime "CERO".
+
+   - **Inversión del Número y Conversión a Palabras**:
+     ```java
+     int numeroReverso = reverso(numero);
+     int cuentaDigitosOriginal = obtenerCuentaDigitos(numero);
+     int cuentaDigitosReverso = obtenerCuentaDigitos(numeroReverso);
+
+     while (numeroReverso != 0) {
+         int digito = numeroReverso % 10;
+         switch (digito) {
+             case 0 -> System.out.print("Cero ");
+             case 1 -> System.out.print("Uno ");
+             case 2 -> System.out.print("Dos ");
+             case 3 -> System.out.print("Tres ");
+             case 4 -> System.out.print("Cuatro ");
+             case 5 -> System.out.print("Cinco ");
+             case 6 -> System.out.print("Seis ");
+             case 7 -> System.out.print("Siete ");
+             case 8 -> System.out.print("Ocho ");
+             case 9 -> System.out.print("Nueve ");
+         }
+         numeroReverso /= 10;
+     }
+
+     for (int i = 0; i < cuentaDigitosOriginal - cuentaDigitosReverso; i++) {
+         System.out.print("Cero ");
+     }
+     ```
+     Invierte el número usando el método `reverso` y obtiene la cuenta de dígitos del número original y del número invertido. Usa un bucle `while` para convertir cada dígito del número invertido en su representación en palabras. Si el número original tiene más dígitos que el número invertido, usa un bucle `for` para agregar ceros necesarios al final de la conversión.
 
 ### Conclusión
 
-Este código es eficiente y claro, asegurando que se verifique correctamente si un número es perfecto y manejando adecuadamente las entradas inválidas. La estructura del programa facilita su comprensión y mantenimiento.
+Este código es eficiente y claro, asegurando que se conviertan correctamente los números enteros positivos en su representación en palabras y manejando adecuadamente las entradas inválidas. La estructura del programa facilita su comprensión y mantenimiento.
